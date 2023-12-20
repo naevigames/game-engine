@@ -15,6 +15,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 string(COMPARE EQUAL "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}" GLFW_STANDALONE)
 
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
+option(GLFW_INSTALL "Generate installation target" ON)
 
 include(GNUInstallDirs)
 include(CMakeDependentOption)
@@ -29,13 +30,10 @@ cmake_dependent_option(GLFW_BUILD_X11 "Build support for X11" ON "UNIX;NOT APPLE
 cmake_dependent_option(GLFW_BUILD_WAYLAND "Build support for Wayland"
     "${GLFW_USE_WAYLAND}" "UNIX;NOT APPLE" OFF)
 
-cmake_dependent_option(GLFW_USE_HYBRID_HPG "Force use of high-performance GPU on hybrid systems" OFF
-                       "WIN32" OFF)
-cmake_dependent_option(USE_MSVC_RUNTIME_LIBRARY_DLL "Use MSVC runtime library DLL" ON
-                       "MSVC" OFF)
+cmake_dependent_option(GLFW_USE_HYBRID_HPG "Force use of high-performance GPU on hybrid systems" OFF "WIN32" OFF)
+cmake_dependent_option(USE_MSVC_RUNTIME_LIBRARY_DLL "Use MSVC runtime library DLL" ON "MSVC" OFF)
 
-set(GLFW_LIBRARY_TYPE "${GLFW_LIBRARY_TYPE}" CACHE STRING
-    "Library type override for GLFW (SHARED, STATIC, OBJECT, or empty to follow BUILD_SHARED_LIBS)")
+set(GLFW_LIBRARY_TYPE "${GLFW_LIBRARY_TYPE}" CACHE STRING "Library type override for GLFW (SHARED, STATIC, OBJECT, or empty to follow BUILD_SHARED_LIBS)")
 
 if (GLFW_LIBRARY_TYPE)
     if (GLFW_LIBRARY_TYPE STREQUAL "SHARED")
@@ -112,3 +110,24 @@ write_basic_package_version_file(src/glfw3ConfigVersion.cmake
 # Add subdirectories
 #--------------------------------------------------------------------
 add_subdirectory(src)
+
+#--------------------------------------------------------------------
+# Install files other than the library
+# The library is installed by src/CMakeLists.txt
+#--------------------------------------------------------------------
+if (GLFW_INSTALL)
+    install(DIRECTORY include/GLFW DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+            FILES_MATCHING PATTERN glfw3.h PATTERN glfw3native.h)
+
+    install(FILES "${GLFW_BINARY_DIR}/src/glfw3Config.cmake"
+            "${GLFW_BINARY_DIR}/src/glfw3ConfigVersion.cmake"
+            DESTINATION "${GLFW_CONFIG_PATH}")
+
+    install(EXPORT glfwTargets FILE glfw3Targets.cmake
+            EXPORT_LINK_INTERFACE_LIBRARIES
+            DESTINATION "${GLFW_CONFIG_PATH}")
+    install(FILES "${GLFW_BINARY_DIR}/src/glfw3.pc"
+            DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
+endif()
+
+
