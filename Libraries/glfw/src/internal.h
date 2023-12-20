@@ -72,8 +72,6 @@ typedef struct _GLFWplatform    _GLFWplatform;
 typedef struct _GLFWlibrary     _GLFWlibrary;
 typedef struct _GLFWmonitor     _GLFWmonitor;
 typedef struct _GLFWcursor      _GLFWcursor;
-typedef struct _GLFWmapelement  _GLFWmapelement;
-typedef struct _GLFWmapping     _GLFWmapping;
 typedef struct _GLFWtls         _GLFWtls;
 typedef struct _GLFWmutex       _GLFWmutex;
 
@@ -727,9 +725,6 @@ struct _GLFWlibrary
 
     _GLFWmonitor**      monitors;
     int                 monitorCount;
-
-    _GLFWmapping*       mappings;
-    int                 mappingCount;
 
     _GLFWtls            errorSlot;
     _GLFWtls            contextSlot;
