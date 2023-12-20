@@ -64,19 +64,6 @@ See the [compilation guide](https://www.glfw.org/docs/latest/compile.html) for
 more information about how to compile GLFW yourself.
 
 
-## Using GLFW
-
-See the [documentation](https://www.glfw.org/docs/latest/) for tutorials, guides
-and the API reference.
-
-
-## Contributing to GLFW
-
-See the [contribution
-guide](https://github.com/glfw/glfw/blob/master/docs/CONTRIBUTING.md) for
-more information.
-
-
 ## System requirements
 
 GLFW supports Windows XP and later and macOS 10.8 and later.  Linux and other
@@ -86,52 +73,4 @@ a running window or clipboard manager.  The OSMesa backend requires Mesa 6.3.
 
 See the [compatibility guide](https://www.glfw.org/docs/latest/compat.html)
 in the documentation for more information.
-
-
-## Dependencies
-
-GLFW itself needs only CMake 3.1 or later and the headers and libraries for your
-OS and window system.
-
-The examples and test programs depend on a number of tiny libraries.  These are
-located in the `deps/` directory.
-
- - [getopt\_port](https://github.com/kimgr/getopt_port/) for examples
-   with command-line options
- - [TinyCThread](https://github.com/tinycthread/tinycthread) for threaded
-   examples
- - [glad2](https://github.com/Dav1dde/glad) for loading OpenGL and Vulkan
-   functions
- - [linmath.h](https://github.com/datenwolf/linmath.h) for linear algebra in
-   examples
- - [Nuklear](https://github.com/Immediate-Mode-UI/Nuklear) for test and example UI
- - [stb\_image\_write](https://github.com/nothings/stb) for writing images to disk
-
-The documentation is generated with [Doxygen](https://doxygen.org/) if CMake can
-find that tool.
-
-
-## Reporting bugs
-
-Bugs are reported to our [issue tracker](https://github.com/glfw/glfw/issues).
-Please check the [contribution
-guide](https://github.com/glfw/glfw/blob/master/docs/CONTRIBUTING.md) for
-information on what to include when reporting a bug.
-
-
-## Contact
-
-On [glfw.org](https://www.glfw.org/) you can find the latest version of GLFW, as
-well as news, documentation and other information about the project.
-
-If you have questions related to the use of GLFW, we have a
-[forum](https://discourse.glfw.org/), and the `#glfw` IRC channel on
-[Libera.Chat](https://libera.chat/).
-
-If you have a bug to report, a patch to submit or a feature you'd like to
-request, please file it in the
-[issue tracker](https://github.com/glfw/glfw/issues) on GitHub.
-
-Finally, if you're interested in helping out with the development of GLFW or
-porting it to your favorite platform, join us on the forum, GitHub or IRC.
 
