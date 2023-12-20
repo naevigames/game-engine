@@ -1,22 +1,17 @@
 add_library(glfw ${GLFW_LIBRARY_TYPE}
                  "${GLFW_SOURCE_DIR}/include/GLFW/glfw3.h"
                  "${GLFW_SOURCE_DIR}/include/GLFW/glfw3native.h"
-                 internal.h platform.h
-                 context.c init.c input.c monitor.c platform.c vulkan.c window.c
-                 egl_context.c osmesa_context.c null_platform.h
-                 null_init.c null_monitor.c null_window.c)
+                 internal.h platform.h context.c init.c input.c monitor.c platform.c vulkan.c window.c
+                 egl_context.c osmesa_context.c null_platform.h null_init.c null_monitor.c null_window.c)
 
 # The time, thread and module code is shared between all backends on a given OS,
 # including the null backend, which still needs those bits to be functional
 if (APPLE)
-    target_sources(glfw PRIVATE cocoa_time.h cocoa_time.c posix_thread.h
-                                posix_module.c posix_thread.c)
+    target_sources(glfw PRIVATE cocoa_time.h cocoa_time.c posix_thread.h posix_module.c posix_thread.c)
 elseif (WIN32)
-    target_sources(glfw PRIVATE win32_time.h win32_thread.h win32_module.c
-                                win32_time.c win32_thread.c)
+    target_sources(glfw PRIVATE win32_time.h win32_thread.h win32_module.c win32_time.c win32_thread.c)
 else()
-    target_sources(glfw PRIVATE posix_time.h posix_thread.h posix_module.c
-                                posix_time.c posix_thread.c)
+    target_sources(glfw PRIVATE posix_time.h posix_thread.h posix_module.c posix_time.c posix_thread.c)
 endif()
 
 if (GLFW_BUILD_COCOA)
@@ -26,22 +21,17 @@ endif()
 
 if (GLFW_BUILD_WIN32)
     target_compile_definitions(glfw PRIVATE _GLFW_WIN32)
-    target_sources(glfw PRIVATE win32_platform.h win32_init.c
-                                win32_monitor.c win32_window.c
-                                wgl_context.c)
+    target_sources(glfw PRIVATE win32_platform.h win32_init.c win32_monitor.c win32_window.c wgl_context.c)
 endif()
 
 if (GLFW_BUILD_X11)
     target_compile_definitions(glfw PRIVATE _GLFW_X11)
-    target_sources(glfw PRIVATE x11_platform.h xkb_unicode.h x11_init.c
-                                x11_monitor.c x11_window.c xkb_unicode.c
-                                glx_context.c)
+    target_sources(glfw PRIVATE x11_platform.h xkb_unicode.h x11_init.c x11_monitor.c x11_window.c xkb_unicode.c glx_context.c)
 endif()
 
 if (GLFW_BUILD_WAYLAND)
     target_compile_definitions(glfw PRIVATE _GLFW_WAYLAND)
-    target_sources(glfw PRIVATE wl_platform.h xkb_unicode.h wl_init.c
-                                wl_monitor.c wl_window.c xkb_unicode.c)
+    target_sources(glfw PRIVATE wl_platform.h xkb_unicode.h wl_init.c wl_monitor.c wl_window.c xkb_unicode.c)
 endif()
 
 if (GLFW_BUILD_X11 OR GLFW_BUILD_WAYLAND)
@@ -289,11 +279,6 @@ if (MSVC OR CMAKE_C_SIMULATE_ID STREQUAL "MSVC")
     target_compile_definitions(glfw PRIVATE _CRT_SECURE_NO_WARNINGS)
 endif()
 
-# Workaround for VS 2008 not shipping with stdint.h
-if (MSVC90)
-    target_include_directories(glfw PUBLIC "${GLFW_SOURCE_DIR}/deps/vs2008")
-endif()
-
 # Check for the DirectX 9 SDK as it is not included with VS 2008
 if (MSVC90)
     include(CheckIncludeFile)
@@ -377,12 +362,3 @@ set(GLFW_PKG_CONFIG_LIBS_PRIVATE "${libs}" CACHE INTERNAL
     "GLFW pkg-config Libs.private")
 
 configure_file("${GLFW_SOURCE_DIR}/CMake/glfw3.pc.in" glfw3.pc @ONLY)
-
-if (GLFW_INSTALL)
-    install(TARGETS glfw
-            EXPORT glfwTargets
-            RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
-            ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
-            LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}")
-endif()
-
