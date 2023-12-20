@@ -51,21 +51,6 @@
                        GLFW_MOD_CAPS_LOCK | \
                        GLFW_MOD_NUM_LOCK)
 
-// Finds a mapping based on joystick GUID
-//
-static _GLFWmapping* findMapping(const char* guid)
-{
-    int i;
-
-    for (i = 0;  i < _glfw.mappingCount;  i++)
-    {
-        if (strcmp(_glfw.mappings[i].guid, guid) == 0)
-            return _glfw.mappings + i;
-    }
-
-    return NULL;
-}
-
 //////////////////////////////////////////////////////////////////////////
 //////                         GLFW event API                       //////
 //////////////////////////////////////////////////////////////////////////
