@@ -1,8 +1,7 @@
-
 add_library(glfw ${GLFW_LIBRARY_TYPE}
                  "${GLFW_SOURCE_DIR}/include/GLFW/glfw3.h"
                  "${GLFW_SOURCE_DIR}/include/GLFW/glfw3native.h"
-                 internal.h platform.h mappings.h
+                 internal.h platform.h
                  context.c init.c input.c monitor.c platform.c vulkan.c window.c
                  egl_context.c osmesa_context.c null_platform.h
                  null_init.c null_monitor.c null_window.c)
@@ -19,15 +18,6 @@ else()
     target_sources(glfw PRIVATE posix_time.h posix_thread.h posix_module.c
                                 posix_time.c posix_thread.c)
 endif()
-
-add_custom_target(update_mappings
-    COMMAND "${CMAKE_COMMAND}" -P "${GLFW_SOURCE_DIR}/CMake/GenerateMappings.cmake" mappings.h.in mappings.h
-    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
-    COMMENT "Updating gamepad mappings from upstream repository"
-    SOURCES mappings.h.in "${GLFW_SOURCE_DIR}/CMake/GenerateMappings.cmake"
-    VERBATIM)
-
-set_target_properties(update_mappings PROPERTIES FOLDER "GLFW3")
 
 if (GLFW_BUILD_COCOA)
     target_compile_definitions(glfw PRIVATE _GLFW_COCOA)
@@ -248,8 +238,8 @@ endif()
 # source files that VS will build (Clang ignores this because we set -std=c99)
 if (CMAKE_C_COMPILER_ID STREQUAL "GNU")
     set_source_files_properties(context.c init.c input.c monitor.c platform.c vulkan.c
-                                window.c null_init.c null_joystick.c null_monitor.c
-                                null_window.c win32_init.c win32_joystick.c win32_module.c
+                                window.c null_init.c null_monitor.c
+                                null_window.c win32_init.c win32_module.c
                                 win32_monitor.c win32_time.c win32_thread.c win32_window.c
                                 wgl_context.c egl_context.c osmesa_context.c PROPERTIES
                                 COMPILE_FLAGS -Wdeclaration-after-statement)
