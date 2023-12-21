@@ -2,7 +2,7 @@ add_library(glfw ${GLFW_LIBRARY_TYPE}
                  "${GLFW_SOURCE_DIR}/include/GLFW/glfw3.h"
                  "${GLFW_SOURCE_DIR}/include/GLFW/glfw3native.h"
                  internal.h platform.h context.c init.c input.c monitor.c platform.c vulkan.c window.c
-                 egl_context.c osmesa_context.c null_platform.h null_init.c null_monitor.c null_window.c)
+                 egl_context.c null_platform.h null_init.c null_monitor.c null_window.c)
 
 # The time, thread and module code is shared between all backends on a given OS,
 # including the null backend, which still needs those bits to be functional
@@ -221,23 +221,6 @@ if (UNIX AND NOT APPLE)
     if (CMAKE_DL_LIBS)
         target_link_libraries(glfw PRIVATE "${CMAKE_DL_LIBS}")
         list(APPEND glfw_PKG_LIBS "-l${CMAKE_DL_LIBS}")
-    endif()
-endif()
-
-# Make GCC warn about declarations that VS 2010 and 2012 won't accept for all
-# source files that VS will build (Clang ignores this because we set -std=c99)
-if (CMAKE_C_COMPILER_ID STREQUAL "GNU")
-    set_source_files_properties(context.c init.c input.c monitor.c platform.c vulkan.c
-                                window.c null_init.c null_monitor.c
-                                null_window.c win32_init.c win32_module.c
-                                win32_monitor.c win32_time.c win32_thread.c win32_window.c
-                                wgl_context.c egl_context.c osmesa_context.c PROPERTIES
-                                COMPILE_FLAGS -Wdeclaration-after-statement)
-endif()
-
-if (WIN32)
-    if (GLFW_USE_HYBRID_HPG)
-        target_compile_definitions(glfw PRIVATE _GLFW_USE_HYBRID_HPG)
     endif()
 endif()
 

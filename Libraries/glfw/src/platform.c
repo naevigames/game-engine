@@ -167,16 +167,12 @@ GLFWAPI const char* glfwGetVersionString(void)
 #endif
         " Null"
         " EGL"
-        " OSMesa"
 #if defined(__MINGW64_VERSION_MAJOR)
         " MinGW-w64"
 #elif defined(__MINGW32__)
         " MinGW"
 #elif defined(_MSC_VER)
         " VisualC"
-#endif
-#if defined(_GLFW_USE_HYBRID_HPG) || defined(_GLFW_USE_OPTIMUS_HPG)
-        " hybrid-GPU"
 #endif
 #if defined(_POSIX_MONOTONIC_CLOCK)
         " monotonic"

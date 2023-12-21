@@ -255,7 +255,6 @@ int _glfwInitNull(void)
 void _glfwTerminateNull(void)
 {
     free(_glfw.null.clipboardString);
-    _glfwTerminateOSMesa();
     _glfwTerminateEGL();
 }
 

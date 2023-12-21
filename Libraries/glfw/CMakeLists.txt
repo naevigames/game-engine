@@ -20,17 +20,12 @@ option(GLFW_INSTALL "Generate installation target" ON)
 include(GNUInstallDirs)
 include(CMakeDependentOption)
 
-if (GLFW_USE_OSMESA)
-    message(FATAL_ERROR "GLFW_USE_OSMESA has been removed; set the GLFW_PLATFORM init hint")
-endif()
-
 cmake_dependent_option(GLFW_BUILD_WIN32 "Build support for Win32" ON "WIN32" OFF)
 cmake_dependent_option(GLFW_BUILD_COCOA "Build support for Cocoa" ON "APPLE" OFF)
 cmake_dependent_option(GLFW_BUILD_X11 "Build support for X11" ON "UNIX;NOT APPLE" OFF)
 cmake_dependent_option(GLFW_BUILD_WAYLAND "Build support for Wayland"
     "${GLFW_USE_WAYLAND}" "UNIX;NOT APPLE" OFF)
 
-cmake_dependent_option(GLFW_USE_HYBRID_HPG "Force use of high-performance GPU on hybrid systems" OFF "WIN32" OFF)
 cmake_dependent_option(USE_MSVC_RUNTIME_LIBRARY_DLL "Use MSVC runtime library DLL" ON "MSVC" OFF)
 
 set(GLFW_LIBRARY_TYPE "${GLFW_LIBRARY_TYPE}" CACHE STRING "Library type override for GLFW (SHARED, STATIC, OBJECT, or empty to follow BUILD_SHARED_LIBS)")
