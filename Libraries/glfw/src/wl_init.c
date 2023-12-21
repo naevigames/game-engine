@@ -468,9 +468,6 @@ GLFWbool _glfwConnectWayland(int platformID, _GLFWplatform* platform)
         _glfwWaitEventsWayland,
         _glfwWaitEventsTimeoutWayland,
         _glfwPostEmptyEventWayland,
-        _glfwGetEGLPlatformWayland,
-        _glfwGetEGLNativeDisplayWayland,
-        _glfwGetEGLNativeWindowWayland,
         _glfwGetRequiredInstanceExtensionsWayland,
         _glfwGetPhysicalDevicePresentationSupportWayland,
         _glfwCreateWindowSurfaceWayland,
@@ -830,9 +827,6 @@ int _glfwInitWayland(void)
 
 void _glfwTerminateWayland(void)
 {
-    _glfwTerminateEGL();
-    _glfwTerminateOSMesa();
-
     if (_glfw.wl.libdecor.callback)
         wl_callback_destroy(_glfw.wl.libdecor.callback);
     if (_glfw.wl.libdecor.context)

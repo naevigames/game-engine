@@ -33,14 +33,12 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <limits.h>
 #include <stdio.h>
 #include <locale.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
 #include <assert.h>
-
 
 // Translate the X11 KeySyms for a key to a GLFW key code
 // NOTE: This is only used as a fallback, in case the XKB method fails

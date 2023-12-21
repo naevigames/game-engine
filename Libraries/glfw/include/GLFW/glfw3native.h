@@ -67,7 +67,6 @@ extern "C" {
  *  * `GLFW_EXPOSE_NATIVE_WGL`
  *  * `GLFW_EXPOSE_NATIVE_NSGL`
  *  * `GLFW_EXPOSE_NATIVE_GLX`
- *  * `GLFW_EXPOSE_NATIVE_EGL`
  *
  *  These macros select which of the native access functions that are declared
  *  and which platform-specific headers to include.  It is then up your (by
@@ -138,9 +137,6 @@ extern "C" {
    #undef GLFW_GLAPIENTRY_DEFINED
   #endif
   #include <GL/glx.h>
- #endif
- #if defined(GLFW_EXPOSE_NATIVE_EGL)
-  #include <EGL/egl.h>
  #endif
 
 #endif /*GLFW_NATIVE_INCLUDE_NONE*/
@@ -490,61 +486,6 @@ GLFWAPI struct wl_output* glfwGetWaylandMonitor(GLFWmonitor* monitor);
  *  @ingroup native
  */
 GLFWAPI struct wl_surface* glfwGetWaylandWindow(GLFWwindow* window);
-#endif
-
-#if defined(GLFW_EXPOSE_NATIVE_EGL)
-/*! @brief Returns the `EGLDisplay` used by GLFW.
- *
- *  @return The `EGLDisplay` used by GLFW, or `EGL_NO_DISPLAY` if an
- *  [error](@ref error_handling) occurred.
- *
- *  @errors Possible errors include @ref GLFW_NOT_INITIALIZED.
- *
- *  @remark Because EGL is initialized on demand, this function will return
- *  `EGL_NO_DISPLAY` until the first context has been created via EGL.
- *
- *  @thread_safety This function may be called from any thread.  Access is not
- *  synchronized.
- *
- *  @since Added in version 3.0.
- *
- *  @ingroup native
- */
-GLFWAPI EGLDisplay glfwGetEGLDisplay(void);
-
-/*! @brief Returns the `EGLContext` of the specified window.
- *
- *  @return The `EGLContext` of the specified window, or `EGL_NO_CONTEXT` if an
- *  [error](@ref error_handling) occurred.
- *
- *  @errors Possible errors include @ref GLFW_NO_WINDOW_CONTEXT and @ref
- *  GLFW_NOT_INITIALIZED.
- *
- *  @thread_safety This function may be called from any thread.  Access is not
- *  synchronized.
- *
- *  @since Added in version 3.0.
- *
- *  @ingroup native
- */
-GLFWAPI EGLContext glfwGetEGLContext(GLFWwindow* window);
-
-/*! @brief Returns the `EGLSurface` of the specified window.
- *
- *  @return The `EGLSurface` of the specified window, or `EGL_NO_SURFACE` if an
- *  [error](@ref error_handling) occurred.
- *
- *  @errors Possible errors include @ref GLFW_NO_WINDOW_CONTEXT and @ref
- *  GLFW_NOT_INITIALIZED.
- *
- *  @thread_safety This function may be called from any thread.  Access is not
- *  synchronized.
- *
- *  @since Added in version 3.0.
- *
- *  @ingroup native
- */
-GLFWAPI EGLSurface glfwGetEGLSurface(GLFWwindow* window);
 #endif
 
 #ifdef __cplusplus

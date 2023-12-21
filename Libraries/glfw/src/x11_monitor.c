@@ -31,11 +31,8 @@
 
 #if defined(_GLFW_X11)
 
-#include <limits.h>
-#include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
 
 // Check whether the display mode should be included in enumeration
 //
