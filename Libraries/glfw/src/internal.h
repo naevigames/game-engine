@@ -196,7 +196,6 @@ struct _GLFWerror
 //
 struct _GLFWinitconfig
 {
-    int           angleType;
     int           platformID;
     PFN_vkGetInstanceProcAddr vulkanLoader;
     struct {
