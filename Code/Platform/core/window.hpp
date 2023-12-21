@@ -10,10 +10,10 @@ namespace core
         virtual void create(const window_config& config) = 0;
         virtual void destroy() = 0;
 
-        virtual void swap_buffers() = 0;
-
         virtual void activate() = 0;
         virtual void close()    = 0;
+
+        virtual void swap_buffers() = 0;
 
         virtual void hint(const window_hint& hint) = 0;
 
