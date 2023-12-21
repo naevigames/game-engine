@@ -268,10 +268,6 @@ void _glfwSetCursorCocoa(_GLFWwindow* window, _GLFWcursor* cursor);
 void _glfwSetClipboardStringCocoa(const char* string);
 const char* _glfwGetClipboardStringCocoa(void);
 
-EGLenum _glfwGetEGLPlatformCocoa(EGLint** attribs);
-EGLNativeDisplayType _glfwGetEGLNativeDisplayCocoa(void);
-EGLNativeWindowType _glfwGetEGLNativeWindowCocoa(_GLFWwindow* window);
-
 void _glfwGetRequiredInstanceExtensionsCocoa(char** extensions);
 GLFWbool _glfwGetPhysicalDevicePresentationSupportCocoa(VkInstance instance, VkPhysicalDevice device, uint32_t queuefamily);
 VkResult _glfwCreateWindowSurfaceCocoa(VkInstance instance, _GLFWwindow* window, const VkAllocationCallbacks* allocator, VkSurfaceKHR* surface);
