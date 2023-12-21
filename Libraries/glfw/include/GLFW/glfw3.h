@@ -1040,7 +1040,6 @@ extern "C" {
 
 #define GLFW_NO_API                          0
 #define GLFW_OPENGL_API             0x00030001
-#define GLFW_OPENGL_ES_API          0x00030002
 
 #define GLFW_NO_ROBUSTNESS                   0
 #define GLFW_NO_RESET_NOTIFICATION  0x00031001
@@ -1066,7 +1065,6 @@ extern "C" {
 #define GLFW_RELEASE_BEHAVIOR_NONE  0x00035002
 
 #define GLFW_NATIVE_CONTEXT_API     0x00036001
-#define GLFW_EGL_CONTEXT_API        0x00036002
 
 #define GLFW_ANGLE_PLATFORM_TYPE_NONE    0x00037001
 #define GLFW_ANGLE_PLATFORM_TYPE_OPENGL  0x00037002
