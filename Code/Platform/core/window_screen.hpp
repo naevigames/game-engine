@@ -1,22 +1,35 @@
 #pragma once
 
-class WindowScreen
+namespace window
 {
-public:
-    static int32_t width()  { return _width;  }
-    static int32_t height() { return _height; }
-    static float   ratio()  { return _ratio;  }
+class Screen
+{
+    public:
+        static void resize(int32_t width, int32_t height)
+        {
+            _width  = width;
+            _height = height;
 
-    static void resize(int32_t width, int32_t height)
-    {
-        _width  = width;
-        _height = height;
+            _ratio  = (float)_width / (float)_height;
+        }
 
-        _ratio  = (float)_width / (float)_height;
-    }
+        static int32_t width()
+        {
+            return _width;
+        }
+        static int32_t height()
+        {
+            return _height;
+        }
 
-private:
-    inline static int32_t _width  { };
-    inline static int32_t _height { };
-    inline static float   _ratio  { };
-};
+        static float ratio()
+        {
+            return _ratio;
+        }
+
+    private:
+        inline static int32_t _width  { };
+        inline static int32_t _height { };
+        inline static float   _ratio  { };
+    };
+}

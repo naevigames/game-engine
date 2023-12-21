@@ -7,7 +7,7 @@ namespace glfw
     {
     }
 
-    void Window::create(const window_config& config)
+    void Window::create(const window::config& config)
     {
         _handle = glfwCreateWindow(config.width, config.height, config.title.c_str(), nullptr, nullptr);
 
@@ -37,7 +37,7 @@ namespace glfw
         glfwSetWindowShouldClose(_handle, GLFW_TRUE);
     }
 
-    void Window::hint(const window_hint& hint)
+    void Window::hint(const window::hint& hint)
     {
         glfwWindowHint(hint.flag, hint.value);
     }
@@ -55,6 +55,6 @@ namespace glfw
 
     void Window::resize_callback(GLFWwindow* handle, int32_t width, int32_t height)
     {
-        WindowScreen::resize(width, height);
+        window::Screen::resize(width, height);
     }
 }

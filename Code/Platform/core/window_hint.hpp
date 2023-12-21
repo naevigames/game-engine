@@ -1,7 +1,10 @@
 #pragma once
 
-struct window_hint
+namespace window
 {
-    int32_t flag;
-    int32_t value;
-};
+    struct hint
+    {
+        int32_t flag;
+        int32_t value;
+    };
+}

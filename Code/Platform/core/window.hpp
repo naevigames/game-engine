@@ -7,7 +7,7 @@ namespace core
 {
     class Window
     {
-        virtual void create(const window_config& config) = 0;
+        virtual void create(const window::config& config) = 0;
         virtual void destroy() = 0;
 
         virtual void activate() = 0;
@@ -15,7 +15,7 @@ namespace core
 
         virtual void swap_buffers() = 0;
 
-        virtual void hint(const window_hint& hint) = 0;
+        virtual void hint(const window::hint& hint) = 0;
 
         virtual void register_resize_callback() = 0;
 

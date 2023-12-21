@@ -1,9 +1,12 @@
 #pragma once
 
-struct window_config
+namespace window
 {
-    std::string title;
+    struct config
+    {
+        std::string title;
 
-    int32_t     width;
-    int32_t     height;
-};
+        int32_t width;
+        int32_t height;
+    };
+}
