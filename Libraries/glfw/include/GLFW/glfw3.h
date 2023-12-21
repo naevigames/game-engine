@@ -5433,8 +5433,6 @@ GLFWAPI GLFWwindow* glfwGetCurrentContext(void);
  *  @errors Possible errors include @ref GLFW_NOT_INITIALIZED, @ref
  *  GLFW_NO_WINDOW_CONTEXT and @ref GLFW_PLATFORM_ERROR.
  *
- *  @remark __EGL:__ The context of the specified window must be current on the
- *  calling thread.
  *
  *  @thread_safety This function may be called from any thread.
  *
