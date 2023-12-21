@@ -254,7 +254,6 @@ typedef enum
 #define WGL_CONTEXT_MAJOR_VERSION_ARB 0x2091
 #define WGL_CONTEXT_MINOR_VERSION_ARB 0x2092
 #define WGL_CONTEXT_FLAGS_ARB 0x2094
-#define WGL_CONTEXT_ES2_PROFILE_BIT_EXT 0x00000004
 #define WGL_CONTEXT_ROBUST_ACCESS_BIT_ARB 0x00000004
 #define WGL_LOSE_CONTEXT_ON_RESET_ARB 0x8252
 #define WGL_CONTEXT_RESET_NOTIFICATION_STRATEGY_ARB 0x8256
@@ -402,7 +401,6 @@ typedef struct _GLFWlibraryWGL
     GLFWbool                            ARB_pixel_format;
     GLFWbool                            ARB_create_context;
     GLFWbool                            ARB_create_context_profile;
-    GLFWbool                            EXT_create_context_es2_profile;
     GLFWbool                            ARB_create_context_robustness;
     GLFWbool                            ARB_create_context_no_error;
     GLFWbool                            ARB_context_flush_control;

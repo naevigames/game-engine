@@ -47,9 +47,9 @@ extern "C" {
  *  For more information about how to use this file, see @ref build_include.
  */
 /*! @defgroup context Context reference
- *  @brief Functions and types related to OpenGL and OpenGL ES contexts.
+ *  @brief Functions and types related to OpenGL contexts.
  *
- *  This is the reference documentation for OpenGL and OpenGL ES context related
+ *  This is the reference documentation for OpenGL context related
  *  functions.  For more task-oriented information, see the @ref context_guide.
  */
 /*! @defgroup vulkan Vulkan support reference
@@ -141,44 +141,9 @@ extern "C" {
  #define GLFW_CALLBACK_DEFINED
 #endif /* CALLBACK */
 
-/* Include the chosen OpenGL or OpenGL ES headers.
+/* Include the chosen OpenGL headers.
  */
-#if defined(GLFW_INCLUDE_ES1)
-
- #include <GLES/gl.h>
- #if defined(GLFW_INCLUDE_GLEXT)
-  #include <GLES/glext.h>
- #endif
-
-#elif defined(GLFW_INCLUDE_ES2)
-
- #include <GLES2/gl2.h>
- #if defined(GLFW_INCLUDE_GLEXT)
-  #include <GLES2/gl2ext.h>
- #endif
-
-#elif defined(GLFW_INCLUDE_ES3)
-
- #include <GLES3/gl3.h>
- #if defined(GLFW_INCLUDE_GLEXT)
-  #include <GLES2/gl2ext.h>
- #endif
-
-#elif defined(GLFW_INCLUDE_ES31)
-
- #include <GLES3/gl31.h>
- #if defined(GLFW_INCLUDE_GLEXT)
-  #include <GLES2/gl2ext.h>
- #endif
-
-#elif defined(GLFW_INCLUDE_ES32)
-
- #include <GLES3/gl32.h>
- #if defined(GLFW_INCLUDE_GLEXT)
-  #include <GLES2/gl2ext.h>
- #endif
-
-#elif defined(GLFW_INCLUDE_GLCOREARB)
+#if defined(GLFW_INCLUDE_GLCOREARB)
 
  #if defined(__APPLE__)
 
@@ -196,29 +161,8 @@ extern "C" {
 
  #endif /*__APPLE__*/
 
-#elif defined(GLFW_INCLUDE_GLU)
-
- #if defined(__APPLE__)
-
-  #if defined(GLFW_INCLUDE_GLU)
-   #include <OpenGL/glu.h>
-  #endif
-
- #else /*__APPLE__*/
-
-  #if defined(GLFW_INCLUDE_GLU)
-   #include <GL/glu.h>
-  #endif
-
- #endif /*__APPLE__*/
-
 #elif !defined(GLFW_INCLUDE_NONE) && \
       !defined(__gl_h_) && \
-      !defined(__gles1_gl_h_) && \
-      !defined(__gles2_gl2_h_) && \
-      !defined(__gles2_gl3_h_) && \
-      !defined(__gles2_gl31_h_) && \
-      !defined(__gles2_gl32_h_) && \
       !defined(__gl_glcorearb_h_) && \
       !defined(__gl2_h_) /*legacy*/ && \
       !defined(__gl3_h_) /*legacy*/ && \
@@ -245,7 +189,7 @@ extern "C" {
 
  #endif /*__APPLE__*/
 
-#endif /* OpenGL and OpenGL ES headers */
+#endif /* OpenGL headers */
 
 #if defined(GLFW_DLL) && defined(_GLFW_BUILD_DLL)
  /* GLFW_DLL must be defined by applications that are linking against the DLL
@@ -593,7 +537,7 @@ extern "C" {
 /*! @brief No context is current for this thread.
  *
  *  This occurs if a GLFW function was called that needs and operates on the
- *  current OpenGL or OpenGL ES context but no context is current on the calling
+ *  current OpenGL context but no context is current on the calling
  *  thread.  One such function is @ref glfwSwapInterval.
  *
  *  @analysis Application programmer error.  Ensure a context is current before
@@ -611,7 +555,7 @@ extern "C" {
 /*! @brief One of the arguments to the function was an invalid value.
  *
  *  One of the arguments to the function was an invalid value, for example
- *  requesting a non-existent OpenGL or OpenGL ES version like 2.7.
+ *  requesting a non-existent OpenGL version like 2.7.
  *
  *  Requesting a valid but unavailable OpenGL or OpenGL ES version will instead
  *  result in a @ref GLFW_VERSION_UNAVAILABLE error.
