@@ -3051,55 +3051,6 @@ const char* _glfwGetClipboardStringX11(void)
     return getSelectionString(_glfw.x11.CLIPBOARD);
 }
 
-EGLenum _glfwGetEGLPlatformX11(EGLint** attribs)
-{
-    if (_glfw.egl.ANGLE_platform_angle)
-    {
-        int type = 0;
-
-        if (_glfw.egl.ANGLE_platform_angle_opengl)
-        {
-            if (_glfw.hints.init.angleType == GLFW_ANGLE_PLATFORM_TYPE_OPENGL)
-                type = EGL_PLATFORM_ANGLE_TYPE_OPENGL_ANGLE;
-        }
-
-        if (_glfw.egl.ANGLE_platform_angle_vulkan)
-        {
-            if (_glfw.hints.init.angleType == GLFW_ANGLE_PLATFORM_TYPE_VULKAN)
-                type = EGL_PLATFORM_ANGLE_TYPE_VULKAN_ANGLE;
-        }
-
-        if (type)
-        {
-            *attribs = _glfw_calloc(5, sizeof(EGLint));
-            (*attribs)[0] = EGL_PLATFORM_ANGLE_TYPE_ANGLE;
-            (*attribs)[1] = type;
-            (*attribs)[2] = EGL_PLATFORM_ANGLE_NATIVE_PLATFORM_TYPE_ANGLE;
-            (*attribs)[3] = EGL_PLATFORM_X11_EXT;
-            (*attribs)[4] = EGL_NONE;
-            return EGL_PLATFORM_ANGLE_ANGLE;
-        }
-    }
-
-    if (_glfw.egl.EXT_platform_base && _glfw.egl.EXT_platform_x11)
-        return EGL_PLATFORM_X11_EXT;
-
-    return 0;
-}
-
-EGLNativeDisplayType _glfwGetEGLNativeDisplayX11(void)
-{
-    return _glfw.x11.display;
-}
-
-EGLNativeWindowType _glfwGetEGLNativeWindowX11(_GLFWwindow* window)
-{
-    if (_glfw.egl.platform)
-        return &window->x11.handle;
-    else
-        return (EGLNativeWindowType) window->x11.handle;
-}
-
 void _glfwGetRequiredInstanceExtensionsX11(char** extensions)
 {
     if (!_glfw.vk.KHR_surface)
