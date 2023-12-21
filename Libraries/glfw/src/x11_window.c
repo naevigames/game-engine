@@ -88,11 +88,6 @@ static GLFWbool waitForAnyEvent(double* timeout)
         { _glfw.x11.emptyEventPipe[0], POLLIN }
     };
 
-#if defined(GLFW_BUILD_LINUX_JOYSTICK)
-    if (_glfw.joysticksInitialized)
-        fds[count++] = (struct pollfd) { _glfw.linjs.inotify, POLLIN };
-#endif
-
     while (!XPending(_glfw.x11.display))
     {
         if (!_glfwPollPOSIX(fds, count, timeout))
@@ -1973,18 +1968,6 @@ GLFWbool _glfwCreateWindowX11(_GLFWwindow* window,
             if (!_glfwChooseVisualGLX(wndconfig, ctxconfig, fbconfig, &visual, &depth))
                 return GLFW_FALSE;
         }
-        else if (ctxconfig->source == GLFW_EGL_CONTEXT_API)
-        {
-            if (!_glfwInitEGL())
-                return GLFW_FALSE;
-            if (!_glfwChooseVisualEGL(wndconfig, ctxconfig, fbconfig, &visual, &depth))
-                return GLFW_FALSE;
-        }
-        else if (ctxconfig->source == GLFW_OSMESA_CONTEXT_API)
-        {
-            if (!_glfwInitOSMesa())
-                return GLFW_FALSE;
-        }
     }
 
     if (!visual)
@@ -2001,16 +1984,6 @@ GLFWbool _glfwCreateWindowX11(_GLFWwindow* window,
         if (ctxconfig->source == GLFW_NATIVE_CONTEXT_API)
         {
             if (!_glfwCreateContextGLX(window, ctxconfig, fbconfig))
-                return GLFW_FALSE;
-        }
-        else if (ctxconfig->source == GLFW_EGL_CONTEXT_API)
-        {
-            if (!_glfwCreateContextEGL(window, ctxconfig, fbconfig))
-                return GLFW_FALSE;
-        }
-        else if (ctxconfig->source == GLFW_OSMESA_CONTEXT_API)
-        {
-            if (!_glfwCreateContextOSMesa(window, ctxconfig, fbconfig))
                 return GLFW_FALSE;
         }
 
@@ -2783,10 +2756,6 @@ void _glfwPollEventsX11(void)
 {
     drainEmptyEvents();
 
-#if defined(GLFW_BUILD_LINUX_JOYSTICK)
-    if (_glfw.joysticksInitialized)
-        _glfwDetectJoystickConnectionLinux();
-#endif
     XPending(_glfw.x11.display);
 
     while (QLength(_glfw.x11.display))

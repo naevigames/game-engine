@@ -513,7 +513,6 @@ typedef struct _GLFWlibraryGLX
     GLFWbool        ARB_create_context;
     GLFWbool        ARB_create_context_profile;
     GLFWbool        ARB_create_context_robustness;
-    GLFWbool        EXT_create_context_es2_profile;
     GLFWbool        ARB_create_context_no_error;
     GLFWbool        ARB_context_flush_control;
 } _GLFWlibraryGLX;

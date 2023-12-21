@@ -32,8 +32,7 @@
     defined(GLFW_BUILD_POSIX_TIMER) || \
     defined(GLFW_BUILD_POSIX_MODULE) || \
     defined(GLFW_BUILD_POSIX_THREAD) || \
-    defined(GLFW_BUILD_POSIX_POLL) || \
-    defined(GLFW_BUILD_LINUX_JOYSTICK)
+    defined(GLFW_BUILD_POSIX_POLL)
  #error "You must not define these; define zero or more _GLFW_<platform> macros instead"
 #endif
 
@@ -77,17 +76,6 @@
  #define GLFW_X11_LIBRARY_WINDOW_STATE
  #define GLFW_GLX_CONTEXT_STATE
  #define GLFW_GLX_LIBRARY_CONTEXT_STATE
-#endif
-
-#if (defined(_GLFW_X11) || defined(_GLFW_WAYLAND)) && defined(__linux__)
- #define GLFW_BUILD_LINUX_JOYSTICK
-#endif
-
-#if defined(GLFW_BUILD_LINUX_JOYSTICK)
- #include "linux_joystick.h"
-#else
- #define GLFW_LINUX_JOYSTICK_STATE
- #define GLFW_LINUX_LIBRARY_JOYSTICK_STATE
 #endif
 
 #define GLFW_PLATFORM_WINDOW_STATE \
