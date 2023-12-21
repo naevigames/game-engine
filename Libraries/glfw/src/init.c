@@ -47,7 +47,6 @@ _GLFWlibrary _glfw = { GLFW_FALSE };
 // after termination without special handling when _glfw is cleared to zero
 //
 static _GLFWerror _glfwMainThreadError;
-static GLFWerrorfun _glfwErrorCallback;
 static GLFWallocator _glfwInitAllocator;
 static _GLFWinitconfig _glfwInitHints =
 {
@@ -389,9 +388,6 @@ void _glfwInputError(int code, const char* format, ...)
 
     error->code = code;
     strcpy(error->description, description);
-
-    if (_glfwErrorCallback)
-        _glfwErrorCallback(code, description);
 }
 
 
@@ -526,11 +522,5 @@ GLFWAPI int glfwGetError(const char** description)
     }
 
     return code;
-}
-
-GLFWAPI GLFWerrorfun glfwSetErrorCallback(GLFWerrorfun cbfun)
-{
-    _GLFW_SWAP(GLFWerrorfun, _glfwErrorCallback, cbfun);
-    return cbfun;
 }
 
