@@ -48,8 +48,7 @@ features or fixing bugs.
 ## Compiling GLFW
 
 GLFW itself requires only the headers and libraries for your OS and window
-system.  It does not need the headers for any context creation API (WGL, GLX,
-EGL, NSGL) or rendering API (OpenGL, OpenGL ES, Vulkan) to enable
+system.  It does not need the headers for any context creation API (WGL, GLX, NSGL) or rendering API (OpenGL, OpenGL ES, Vulkan) to enable
 support for them.
 
 GLFW supports compilation on Windows with Visual C++ 2010 and later, MinGW and

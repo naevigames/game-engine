@@ -158,7 +158,6 @@ GLFWAPI const char* glfwGetVersionString(void)
         " X11 GLX"
 #endif
         " Null"
-        " EGL"
 #if defined(__MINGW64_VERSION_MAJOR)
         " MinGW-w64"
 #elif defined(__MINGW32__)
