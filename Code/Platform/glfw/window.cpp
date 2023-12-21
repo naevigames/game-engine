@@ -7,7 +7,7 @@ namespace glfw
     {
     }
 
-    void Window::create(window_config& config)
+    void Window::create(const window_config& config)
     {
         _handle = glfwCreateWindow(config.width, config.height, config.title.c_str(), nullptr, nullptr);
 
@@ -37,7 +37,7 @@ namespace glfw
         glfwSetWindowShouldClose(_handle, GLFW_TRUE);
     }
 
-    void Window::hint(window_hint hint)
+    void Window::hint(const window_hint& hint)
     {
         glfwWindowHint(hint.flag, hint.value);
     }
@@ -50,7 +50,7 @@ namespace glfw
 
     bool Window::is_closed()
     {
-        return glfwWindowShouldClose(_handle) == GLFW_TRUE;
+        return glfwWindowShouldClose(_handle);
     }
 
     void Window::resize_callback(GLFWwindow* handle, int32_t width, int32_t height)

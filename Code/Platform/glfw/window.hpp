@@ -10,7 +10,7 @@ namespace glfw
     public:
         Window();
 
-        void create(window_config& config) final;
+        void create(const window_config& config) final;
         void destroy() final;
 
         void swap_buffers() final;
@@ -18,7 +18,7 @@ namespace glfw
         void activate() final;
         void close()    final;
 
-        void hint(window_hint hint) final;
+        void hint(const window_hint& hint) final;
 
         void register_resize_callback() final;
 
