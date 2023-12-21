@@ -683,7 +683,6 @@ void _glfwTerminateCocoa(void)
 
     _glfwTerminateNSGL();
     _glfwTerminateEGL();
-    _glfwTerminateOSMesa();
 
     } // autoreleasepool
 }
