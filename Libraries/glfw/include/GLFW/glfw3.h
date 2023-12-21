@@ -5258,34 +5258,12 @@ GLFWAPI uint64_t glfwGetTimerFrequency(void);
  *  @thread_safety This function may be called from any thread.
  *
  *  @sa @ref context_current
- *  @sa @ref glfwGetCurrentContext
  *
  *  @since Added in version 3.0.
  *
  *  @ingroup context
  */
 GLFWAPI void glfwMakeContextCurrent(GLFWwindow* window);
-
-/*! @brief Returns the window whose context is current on the calling thread.
- *
- *  This function returns the window whose OpenGL or OpenGL ES context is
- *  current on the calling thread.
- *
- *  @return The window whose context is current, or `NULL` if no window's
- *  context is current.
- *
- *  @errors Possible errors include @ref GLFW_NOT_INITIALIZED.
- *
- *  @thread_safety This function may be called from any thread.
- *
- *  @sa @ref context_current
- *  @sa @ref glfwMakeContextCurrent
- *
- *  @since Added in version 3.0.
- *
- *  @ingroup context
- */
-GLFWAPI GLFWwindow* glfwGetCurrentContext(void);
 
 /*! @brief Swaps the front and back buffers of the specified window.
  *
