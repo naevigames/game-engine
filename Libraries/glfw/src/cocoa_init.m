@@ -682,7 +682,6 @@ void _glfwTerminateCocoa(void)
     _glfw_free(_glfw.ns.clipboardString);
 
     _glfwTerminateNSGL();
-    _glfwTerminateEGL();
 
     } // autoreleasepool
 }
