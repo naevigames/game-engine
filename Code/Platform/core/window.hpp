@@ -1,7 +1,7 @@
 #pragma once
 
-#include "window_config.hpp"
-#include "window_hint.hpp"
+#include "window/hint.hpp"
+#include "window/config.hpp"
 
 namespace core
 {

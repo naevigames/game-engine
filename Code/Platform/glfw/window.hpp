@@ -1,7 +1,6 @@
 #pragma once
 
 #include "core/window.hpp"
-#include "core/window_screen.hpp"
 
 namespace glfw
 {

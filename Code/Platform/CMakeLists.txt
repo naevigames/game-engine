@@ -9,4 +9,4 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC GLFW_INCLUDE_NONE)
 target_compile_features(${PROJECT_NAME}    PUBLIC cxx_std_23)
 target_link_libraries(${PROJECT_NAME}      PUBLIC glfw glad)
 
-target_sources(${PROJECT_NAME} PRIVATE glfw/window.cpp glfw/platform.cpp platform_manager.cpp)
+target_sources(${PROJECT_NAME} PRIVATE glfw/window.cpp glfw/platform.cpp platform_manager.cpp window/screen.cpp)
