@@ -268,7 +268,6 @@ struct _GLFWctxconfig
     int           profile;
     int           robustness;
     int           release;
-    _GLFWwindow*  share;
     struct {
         GLFWbool  offline;
     } nsgl;

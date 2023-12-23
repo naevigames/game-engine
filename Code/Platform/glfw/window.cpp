@@ -11,7 +11,7 @@ namespace glfw
 
     void Window::create(const window::config& config)
     {
-            _handle =  glfwCreateWindow(config.width, config.height, config.title.c_str(), nullptr, nullptr);
+            _handle =  glfwCreateWindow(config.width, config.height, config.title.c_str(), nullptr);
         if (_handle == nullptr)
         {
             exit(EXIT_FAILURE);
