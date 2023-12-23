@@ -2,6 +2,7 @@
 
 #include "window/hint.hpp"
 #include "window/config.hpp"
+#include "window/screen.hpp"
 
 namespace core
 {

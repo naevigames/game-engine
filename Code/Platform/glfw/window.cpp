@@ -1,7 +1,5 @@
 #include "window.hpp"
 
-#include "window/screen.hpp"
-
 namespace glfw
 {
     Window::Window()
