@@ -2,7 +2,7 @@
 
 namespace window
 {
-    void Screen::resize(int32_t width, int32_t height)
+    void Screen::set_size(int32_t width, int32_t height)
     {
         _width  = width;
         _height = height;
