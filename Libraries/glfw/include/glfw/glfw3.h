@@ -2749,7 +2749,7 @@ GLFWAPI void glfwWindowHintString(int hint, const char* value);
  *  [hard constraints](@ref window_hints_hard).  This includes the size of the
  *  window, especially for full screen windows.  To query the actual attributes
  *  of the created window, framebuffer and context, see @ref
- *  glfwGetWindowAttrib, @ref glfwGetWindowSize and @ref glfwGetFramebufferSize.
+ *  glfwGetWindowAttrib, @ref glfwGetWindowSize.
  *
  *  To create a full screen window, you need to specify the monitor the window
  *  will cover.  If no monitor is specified, the window will be windowed mode.
@@ -3090,36 +3090,6 @@ GLFWAPI void glfwGetWindowPos(GLFWwindow* window, int* xpos, int* ypos);
  */
 GLFWAPI void glfwSetWindowPos(GLFWwindow* window, int xpos, int ypos);
 
-/*! @brief Retrieves the size of the content area of the specified window.
- *
- *  This function retrieves the size, in screen coordinates, of the content area
- *  of the specified window.  If you wish to retrieve the size of the
- *  framebuffer of the window in pixels, see @ref glfwGetFramebufferSize.
- *
- *  Any or all of the size arguments may be `NULL`.  If an error occurs, all
- *  non-`NULL` size arguments will be set to zero.
- *
- *  @param[in] window The window whose size to retrieve.
- *  @param[out] width Where to store the width, in screen coordinates, of the
- *  content area, or `NULL`.
- *  @param[out] height Where to store the height, in screen coordinates, of the
- *  content area, or `NULL`.
- *
- *  @errors Possible errors include @ref GLFW_NOT_INITIALIZED and @ref
- *  GLFW_PLATFORM_ERROR.
- *
- *  @thread_safety This function must only be called from the main thread.
- *
- *  @sa @ref window_size
- *  @sa @ref glfwSetWindowSize
- *
- *  @since Added in version 1.0.
- *  @glfw3 Added window handle parameter.
- *
- *  @ingroup window
- */
-GLFWAPI void glfwGetWindowSize(GLFWwindow* window, int* width, int* height);
-
 /*! @brief Sets the size limits of the specified window.
  *
  *  This function sets the size limits of the content area of the specified
@@ -3237,7 +3207,6 @@ GLFWAPI void glfwSetWindowAspectRatio(GLFWwindow* window, int numer, int denom);
  *  @thread_safety This function must only be called from the main thread.
  *
  *  @sa @ref window_size
- *  @sa @ref glfwGetWindowSize
  *  @sa @ref glfwSetWindowMonitor
  *
  *  @since Added in version 1.0.
@@ -3246,35 +3215,6 @@ GLFWAPI void glfwSetWindowAspectRatio(GLFWwindow* window, int numer, int denom);
  *  @ingroup window
  */
 GLFWAPI void glfwSetWindowSize(GLFWwindow* window, int width, int height);
-
-/*! @brief Retrieves the size of the framebuffer of the specified window.
- *
- *  This function retrieves the size, in pixels, of the framebuffer of the
- *  specified window.  If you wish to retrieve the size of the window in screen
- *  coordinates, see @ref glfwGetWindowSize.
- *
- *  Any or all of the size arguments may be `NULL`.  If an error occurs, all
- *  non-`NULL` size arguments will be set to zero.
- *
- *  @param[in] window The window whose framebuffer to query.
- *  @param[out] width Where to store the width, in pixels, of the framebuffer,
- *  or `NULL`.
- *  @param[out] height Where to store the height, in pixels, of the framebuffer,
- *  or `NULL`.
- *
- *  @errors Possible errors include @ref GLFW_NOT_INITIALIZED and @ref
- *  GLFW_PLATFORM_ERROR.
- *
- *  @thread_safety This function must only be called from the main thread.
- *
- *  @sa @ref window_fbsize
- *  @sa @ref glfwSetFramebufferSizeCallback
- *
- *  @since Added in version 3.0.
- *
- *  @ingroup window
- */
-GLFWAPI void glfwGetFramebufferSize(GLFWwindow* window, int* width, int* height);
 
 /*! @brief Retrieves the size of the frame of the window.
  *
