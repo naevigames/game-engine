@@ -1,6 +1,6 @@
 #pragma once
 
-#include "window/hint.hpp"
+#include "window/param.hpp"
 #include "window/config.hpp"
 #include "window/screen.hpp"
 
@@ -19,7 +19,7 @@ namespace core
 
         virtual void swap_buffers() const = 0;
 
-        virtual void hint(const window::hint& hint) = 0;
+        virtual void hint(const window::param& hint) = 0;
 
         virtual void register_size_callback() = 0;
 

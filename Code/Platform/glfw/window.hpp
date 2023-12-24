@@ -17,7 +17,7 @@ namespace glfw
 
         void swap_buffers() const final;
 
-        void hint(const window::hint& hint) final;
+        void hint(const window::param& hint) final;
 
         void register_size_callback() final;
 

@@ -38,7 +38,7 @@ namespace glfw
         glfwSetWindowShouldClose(_handle, GLFW_TRUE);
     }
 
-    void Window::hint(const window::hint& hint)
+    void Window::hint(const window::param& hint)
     {
         glfwWindowHint(hint.flag, hint.value);
     }
