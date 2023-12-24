@@ -181,8 +181,7 @@ void _glfwInputWindowMonitor(_GLFWwindow* window, _GLFWmonitor* monitor)
 
 GLFWAPI GLFWwindow* glfwCreateWindow(int width, int height,
                                      const char* title,
-                                     GLFWmonitor* monitor,
-                                     GLFWwindow* share)
+                                     GLFWmonitor* monitor)
 {
     _GLFWfbconfig fbconfig;
     _GLFWctxconfig ctxconfig;
@@ -211,7 +210,6 @@ GLFWAPI GLFWwindow* glfwCreateWindow(int width, int height,
     wndconfig.width   = width;
     wndconfig.height  = height;
     wndconfig.title   = title;
-    ctxconfig.share   = (_GLFWwindow*) share;
 
     if (!_glfwIsValidContextConfig(&ctxconfig))
         return NULL;
@@ -688,20 +686,6 @@ GLFWAPI void glfwSetWindowAspectRatio(GLFWwindow* handle, int numer, int denom)
     _glfw.platform.setWindowAspectRatio(window, numer, denom);
 }
 
-GLFWAPI void glfwGetFramebufferSize(GLFWwindow* handle, int* width, int* height)
-{
-    _GLFWwindow* window = (_GLFWwindow*) handle;
-    assert(window != NULL);
-
-    if (width)
-        *width = 0;
-    if (height)
-        *height = 0;
-
-    _GLFW_REQUIRE_INIT();
-    _glfw.platform.getFramebufferSize(window, width, height);
-}
-
 GLFWAPI void glfwGetWindowFrameSize(GLFWwindow* handle,
                                     int* left, int* top,
                                     int* right, int* bottom)
@@ -1124,32 +1108,3 @@ GLFWAPI void glfwPollEvents(void)
     _GLFW_REQUIRE_INIT();
     _glfw.platform.pollEvents();
 }
-
-GLFWAPI void glfwWaitEvents(void)
-{
-    _GLFW_REQUIRE_INIT();
-    _glfw.platform.waitEvents();
-}
-
-GLFWAPI void glfwWaitEventsTimeout(double timeout)
-{
-    _GLFW_REQUIRE_INIT();
-    assert(timeout == timeout);
-    assert(timeout >= 0.0);
-    assert(timeout <= DBL_MAX);
-
-    if (timeout != timeout || timeout < 0.0 || timeout > DBL_MAX)
-    {
-        _glfwInputError(GLFW_INVALID_VALUE, "Invalid time %f", timeout);
-        return;
-    }
-
-    _glfw.platform.waitEventsTimeout(timeout);
-}
-
-GLFWAPI void glfwPostEmptyEvent(void)
-{
-    _GLFW_REQUIRE_INIT();
-    _glfw.platform.postEmptyEvent();
-}
-
