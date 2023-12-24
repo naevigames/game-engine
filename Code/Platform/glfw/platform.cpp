@@ -15,7 +15,7 @@ namespace glfw
         glfwTerminate();
     }
 
-    void Platform::poll_events()
+    void Platform::poll_events() const
     {
         glfwPollEvents();
     }

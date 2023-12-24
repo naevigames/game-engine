@@ -15,7 +15,7 @@ namespace glfw
         void activate() final;
         void close()    final;
 
-        void swap_buffers() final;
+        void swap_buffers() const final;
 
         void hint(const window::hint& hint) final;
 

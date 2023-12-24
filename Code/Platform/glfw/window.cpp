@@ -23,7 +23,7 @@ namespace glfw
         glfwDestroyWindow(_handle);
     }
 
-    void Window::swap_buffers()
+    void Window::swap_buffers() const
     {
         glfwSwapBuffers(_handle);
     }

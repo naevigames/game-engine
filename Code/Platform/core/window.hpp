@@ -17,7 +17,7 @@ namespace core
         virtual void activate() = 0;
         virtual void close()    = 0;
 
-        virtual void swap_buffers() = 0;
+        virtual void swap_buffers() const = 0;
 
         virtual void hint(const window::hint& hint) = 0;
 
