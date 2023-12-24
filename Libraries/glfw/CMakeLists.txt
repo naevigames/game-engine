@@ -17,14 +17,10 @@ string(COMPARE EQUAL "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}" GLFW_ST
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 option(GLFW_INSTALL "Generate installation target" ON)
 
-include(GNUInstallDirs)
-include(CMakeDependentOption)
-
 cmake_dependent_option(GLFW_BUILD_WIN32 "Build support for Win32" ON "WIN32" OFF)
 cmake_dependent_option(GLFW_BUILD_COCOA "Build support for Cocoa" ON "APPLE" OFF)
 cmake_dependent_option(GLFW_BUILD_X11 "Build support for X11" ON "UNIX;NOT APPLE" OFF)
-cmake_dependent_option(GLFW_BUILD_WAYLAND "Build support for Wayland"
-    "${GLFW_USE_WAYLAND}" "UNIX;NOT APPLE" OFF)
+cmake_dependent_option(GLFW_BUILD_WAYLAND "Build support for Wayland" "${GLFW_USE_WAYLAND}" "UNIX;NOT APPLE" OFF)
 
 cmake_dependent_option(USE_MSVC_RUNTIME_LIBRARY_DLL "Use MSVC runtime library DLL" ON "MSVC" OFF)
 

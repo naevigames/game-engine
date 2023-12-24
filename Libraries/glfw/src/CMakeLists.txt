@@ -227,36 +227,9 @@ if (GLFW_BUILD_WIN32)
     target_compile_definitions(glfw PRIVATE UNICODE _UNICODE)
 endif()
 
-# HACK: When building on MinGW, WINVER and UNICODE need to be defined before
-# the inclusion of stddef.h (by glfw3.h), which is itself included before
-# win32_platform.h.  We define them here until a saner solution can be found
-# NOTE: MinGW-w64 and Visual C++ do /not/ need this hack.
-if (MINGW)
-    target_compile_definitions(glfw PRIVATE WINVER=0x0501)
-endif()
-
-# Workaround for legacy MinGW not providing XInput and DirectInput
-if (MINGW)
-    include(CheckIncludeFile)
-    check_include_file(dinput.h DINPUT_H_FOUND)
-    check_include_file(xinput.h XINPUT_H_FOUND)
-    if (NOT DINPUT_H_FOUND OR NOT XINPUT_H_FOUND)
-        target_include_directories(glfw PRIVATE "${GLFW_SOURCE_DIR}/deps/mingw")
-    endif()
-endif()
-
 # Workaround for the MS CRT deprecating parts of the standard library
 if (MSVC OR CMAKE_C_SIMULATE_ID STREQUAL "MSVC")
     target_compile_definitions(glfw PRIVATE _CRT_SECURE_NO_WARNINGS)
-endif()
-
-# Check for the DirectX 9 SDK as it is not included with VS 2008
-if (MSVC90)
-    include(CheckIncludeFile)
-    check_include_file(dinput.h DINPUT_H_FOUND)
-    if (NOT DINPUT_H_FOUND)
-        message(FATAL_ERROR "DirectX 9 headers not found; install DirectX 9 SDK")
-    endif()
 endif()
 
 # Workaround for -std=c99 on Linux disabling _DEFAULT_SOURCE (POSIX 2008 and more)
