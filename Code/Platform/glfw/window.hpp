@@ -19,12 +19,10 @@ namespace glfw
 
         void hint(const window::param& hint) final;
 
+        void register_user_pointer()  final;
         void register_size_callback() final;
 
         bool is_closed() final;
-
-    private:
-        static void size_callback(GLFWwindow* handle, int32_t width, int32_t height);
 
     private:
         GLFWwindow* _handle;

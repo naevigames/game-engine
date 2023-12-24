@@ -21,6 +21,7 @@ namespace core
 
         virtual void hint(const window::param& hint) = 0;
 
+        virtual void register_user_pointer()  = 0;
         virtual void register_size_callback() = 0;
 
         virtual bool is_closed() = 0;

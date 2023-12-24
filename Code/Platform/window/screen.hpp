@@ -5,6 +5,8 @@ namespace window
     class Screen
     {
     public:
+        Screen() = delete;
+
         static int32_t width();
         static int32_t height();
         static float   ratio();
