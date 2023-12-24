@@ -41,7 +41,7 @@
 #endif
 
 #define GLFW_INCLUDE_NONE
-#include "../include/GLFW/glfw3.h"
+#include "../include/glfw/glfw3.h"
 
 #define _GLFW_INSERT_FIRST      0
 #define _GLFW_INSERT_LAST       1
@@ -268,7 +268,6 @@ struct _GLFWctxconfig
     int           profile;
     int           robustness;
     int           release;
-    _GLFWwindow*  share;
     struct {
         GLFWbool  offline;
     } nsgl;
@@ -481,7 +480,6 @@ struct _GLFWplatform
     void (*setWindowSize)(_GLFWwindow*,int,int);
     void (*setWindowSizeLimits)(_GLFWwindow*,int,int,int,int);
     void (*setWindowAspectRatio)(_GLFWwindow*,int,int);
-    void (*getFramebufferSize)(_GLFWwindow*,int*,int*);
     void (*getWindowFrameSize)(_GLFWwindow*,int*,int*,int*,int*);
     void (*getWindowContentScale)(_GLFWwindow*,float*,float*);
     void (*iconifyWindow)(_GLFWwindow*);

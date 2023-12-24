@@ -454,10 +454,6 @@ GLFWbool _glfwCreateContextGLX(_GLFWwindow* window,
 {
     int attribs[40];
     GLXFBConfig native = NULL;
-    GLXContext share = NULL;
-
-    if (ctxconfig->share)
-        share = ctxconfig->share->context.glx.handle;
 
     if (!chooseGLXFBConfig(fbconfig, &native))
     {
@@ -571,7 +567,7 @@ GLFWbool _glfwCreateContextGLX(_GLFWwindow* window,
         window->context.glx.handle =
             _glfw.glx.CreateContextAttribsARB(_glfw.x11.display,
                                               native,
-                                              share,
+                                              NULL,
                                               True,
                                               attribs);
 
@@ -587,14 +583,14 @@ GLFWbool _glfwCreateContextGLX(_GLFWwindow* window,
                 ctxconfig->forward == GLFW_FALSE)
             {
                 window->context.glx.handle =
-                    createLegacyContextGLX(window, native, share);
+                    createLegacyContextGLX(window, native, NULL);
             }
         }
     }
     else
     {
         window->context.glx.handle =
-            createLegacyContextGLX(window, native, share);
+            createLegacyContextGLX(window, native, NULL);
     }
 
     _glfwReleaseErrorHandlerX11();
