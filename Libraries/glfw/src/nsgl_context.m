@@ -308,9 +308,6 @@ GLFWbool _glfwCreateContextNSGL(_GLFWwindow* window,
 
     NSOpenGLContext* share = nil;
 
-    if (ctxconfig->share)
-        share = ctxconfig->share->context.nsgl.object;
-
     window->context.nsgl.object =
         [[NSOpenGLContext alloc] initWithFormat:window->context.nsgl.pixelFormat
                                    shareContext:share];
