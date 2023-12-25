@@ -58,9 +58,6 @@
  #define _WIN32_WINNT 0x0501
 #endif
 
-// GLFW uses DirectInput8 interfaces
-#define DIRECTINPUT_VERSION 0x0800
-
 // GLFW uses OEM cursor resources
 #define OEMRESOURCE
 
