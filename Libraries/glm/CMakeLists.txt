@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
 cmake_policy(VERSION 3.6)
 
-
 file(READ "glm/detail/setup.hpp" GLM_SETUP_FILE)
 string(REGEX MATCH "#define[ ]+GLM_VERSION_MAJOR[ ]+([0-9]+)" _ ${GLM_SETUP_FILE})
 set(GLM_VERSION_MAJOR "${CMAKE_MATCH_1}")
@@ -22,17 +21,11 @@ if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 endif()
 
 option(GLM_BUILD_LIBRARY "Build dynamic/static library" ON)
-option(GLM_BUILD_TESTS "Build the test programs" ${GLM_IS_MASTER_PROJECT})
 option(GLM_BUILD_INSTALL "Generate the install target" ${GLM_IS_MASTER_PROJECT})
 
 include(GNUInstallDirs)
 
 add_subdirectory(glm)
-
-if (GLM_BUILD_TESTS)
-	include(CTest)
-	add_subdirectory(test)
-endif()
 
 if (GLM_BUILD_INSTALL)
 	include(CPack)
@@ -63,11 +56,5 @@ if (GLM_BUILD_INSTALL)
 		"${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
 		"${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
 		IMMEDIATE @ONLY
-	)
-
-	add_custom_target(
-		uninstall
-		"${CMAKE_COMMAND}" -P
-		"${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
 	)
 endif()
