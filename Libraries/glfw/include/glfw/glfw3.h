@@ -1543,32 +1543,6 @@ typedef void (* GLFWframebuffersizefun)(GLFWwindow* window, int width, int heigh
  */
 typedef void (* GLFWwindowcontentscalefun)(GLFWwindow* window, float xscale, float yscale);
 
-/*! @brief The function pointer type for mouse button callbacks.
- *
- *  This is the function pointer type for mouse button callback functions.
- *  A mouse button callback function has the following signature:
- *  @code
- *  void function_name(GLFWwindow* window, int button, int action, int mods)
- *  @endcode
- *
- *  @param[in] window The window that received the event.
- *  @param[in] button The [mouse button](@ref buttons) that was pressed or
- *  released.
- *  @param[in] action One of `GLFW_PRESS` or `GLFW_RELEASE`.  Future releases
- *  may add more actions.
- *  @param[in] mods Bit field describing which [modifier keys](@ref mods) were
- *  held down.
- *
- *  @sa @ref input_mouse_button
- *  @sa @ref glfwSetMouseButtonCallback
- *
- *  @since Added in version 1.0.
- *  @glfw3 Added window handle and modifier mask parameters.
- *
- *  @ingroup input
- */
-typedef void (* GLFWmousebuttonfun)(GLFWwindow* window, int button, int action, int mods);
-
 /*! @brief The function pointer type for cursor position callbacks.
  *
  *  This is the function pointer type for cursor position callbacks.  A cursor
@@ -1633,32 +1607,6 @@ typedef void (* GLFWcursorenterfun)(GLFWwindow* window, int entered);
  *  @ingroup input
  */
 typedef void (* GLFWscrollfun)(GLFWwindow* window, double xoffset, double yoffset);
-
-/*! @brief The function pointer type for keyboard key callbacks.
- *
- *  This is the function pointer type for keyboard key callbacks.  A keyboard
- *  key callback function has the following signature:
- *  @code
- *  void function_name(GLFWwindow* window, int key, int scancode, int action, int mods)
- *  @endcode
- *
- *  @param[in] window The window that received the event.
- *  @param[in] key The [keyboard key](@ref keys) that was pressed or released.
- *  @param[in] scancode The platform-specific scancode of the key.
- *  @param[in] action `GLFW_PRESS`, `GLFW_RELEASE` or `GLFW_REPEAT`.  Future
- *  releases may add more actions.
- *  @param[in] mods Bit field describing which [modifier keys](@ref mods) were
- *  held down.
- *
- *  @sa @ref input_key
- *  @sa @ref glfwSetKeyCallback
- *
- *  @since Added in version 1.0.
- *  @glfw3 Added window handle, scancode and modifier mask parameters.
- *
- *  @ingroup input
- */
-typedef void (* GLFWkeyfun)(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 /*! @brief The function pointer type for Unicode character callbacks.
  *
@@ -4583,56 +4531,6 @@ GLFWAPI void glfwDestroyCursor(GLFWcursor* cursor);
  */
 GLFWAPI void glfwSetCursor(GLFWwindow* window, GLFWcursor* cursor);
 
-/*! @brief Sets the key callback.
- *
- *  This function sets the key callback of the specified window, which is called
- *  when a key is pressed, repeated or released.
- *
- *  The key functions deal with physical keys, with layout independent
- *  [key tokens](@ref keys) named after their values in the standard US keyboard
- *  layout.  If you want to input text, use the
- *  [character callback](@ref glfwSetCharCallback) instead.
- *
- *  When a window loses input focus, it will generate synthetic key release
- *  events for all pressed keys with associated key tokens.  You can tell these
- *  events from user-generated events by the fact that the synthetic ones are
- *  generated after the focus loss event has been processed, i.e. after the
- *  [window focus callback](@ref glfwSetWindowFocusCallback) has been called.
- *
- *  The scancode of a key is specific to that platform or sometimes even to that
- *  machine.  Scancodes are intended to allow users to bind keys that don't have
- *  a GLFW key token.  Such keys have `key` set to `GLFW_KEY_UNKNOWN`, their
- *  state is not saved and so it cannot be queried with @ref glfwGetKey.
- *
- *  Sometimes GLFW needs to generate synthetic key events, in which case the
- *  scancode may be zero.
- *
- *  @param[in] window The window whose callback to set.
- *  @param[in] callback The new key callback, or `NULL` to remove the currently
- *  set callback.
- *  @return The previously set callback, or `NULL` if no callback was set or the
- *  library had not been [initialized](@ref intro_init).
- *
- *  @callback_signature
- *  @code
- *  void function_name(GLFWwindow* window, int key, int scancode, int action, int mods)
- *  @endcode
- *  For more information about the callback parameters, see the
- *  [function pointer type](@ref GLFWkeyfun).
- *
- *  @errors Possible errors include @ref GLFW_NOT_INITIALIZED.
- *
- *  @thread_safety This function must only be called from the main thread.
- *
- *  @sa @ref input_key
- *
- *  @since Added in version 1.0.
- *  @glfw3 Added window handle parameter and return value.
- *
- *  @ingroup input
- */
-GLFWAPI GLFWkeyfun glfwSetKeyCallback(GLFWwindow* window, GLFWkeyfun callback);
-
 /*! @brief Sets the Unicode character callback.
  *
  *  This function sets the character callback of the specified window, which is
@@ -4717,43 +4615,6 @@ GLFWAPI GLFWcharfun glfwSetCharCallback(GLFWwindow* window, GLFWcharfun callback
  *  @ingroup input
  */
 GLFWAPI GLFWcharmodsfun glfwSetCharModsCallback(GLFWwindow* window, GLFWcharmodsfun callback);
-
-/*! @brief Sets the mouse button callback.
- *
- *  This function sets the mouse button callback of the specified window, which
- *  is called when a mouse button is pressed or released.
- *
- *  When a window loses input focus, it will generate synthetic mouse button
- *  release events for all pressed mouse buttons.  You can tell these events
- *  from user-generated events by the fact that the synthetic ones are generated
- *  after the focus loss event has been processed, i.e. after the
- *  [window focus callback](@ref glfwSetWindowFocusCallback) has been called.
- *
- *  @param[in] window The window whose callback to set.
- *  @param[in] callback The new callback, or `NULL` to remove the currently set
- *  callback.
- *  @return The previously set callback, or `NULL` if no callback was set or the
- *  library had not been [initialized](@ref intro_init).
- *
- *  @callback_signature
- *  @code
- *  void function_name(GLFWwindow* window, int button, int action, int mods)
- *  @endcode
- *  For more information about the callback parameters, see the
- *  [function pointer type](@ref GLFWmousebuttonfun).
- *
- *  @errors Possible errors include @ref GLFW_NOT_INITIALIZED.
- *
- *  @thread_safety This function must only be called from the main thread.
- *
- *  @sa @ref input_mouse_button
- *
- *  @since Added in version 1.0.
- *  @glfw3 Added window handle parameter and return value.
- *
- *  @ingroup input
- */
-GLFWAPI GLFWmousebuttonfun glfwSetMouseButtonCallback(GLFWwindow* window, GLFWmousebuttonfun callback);
 
 /*! @brief Sets the cursor position callback.
  *
