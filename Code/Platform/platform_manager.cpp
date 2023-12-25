@@ -18,6 +18,7 @@ void PlatformManager::init(const window::config& config)
     _window->create(config);
     _window->activate();
 
+    _window->register_user_pointer();
     _window->register_size_callback();
 
     gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);

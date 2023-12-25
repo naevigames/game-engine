@@ -10,6 +10,6 @@ namespace glfw
         void init()    final;
         void release() final;
 
-        void poll_events() final;
+        void poll_events() const final;
     };
 }

@@ -80,9 +80,6 @@ void _glfwInputKey(_GLFWwindow* window, int key, int scancode, int action, int m
 
     if (!window->lockKeyMods)
         mods &= ~(GLFW_MOD_CAPS_LOCK | GLFW_MOD_NUM_LOCK);
-
-    if (window->callbacks.key)
-        window->callbacks.key((GLFWwindow*) window, key, scancode, action, mods);
 }
 
 // Notifies shared code of a Unicode codepoint input event
@@ -144,9 +141,6 @@ void _glfwInputMouseClick(_GLFWwindow* window, int button, int action, int mods)
         window->mouseButtons[button] = _GLFW_STICK;
     else
         window->mouseButtons[button] = (char) action;
-
-    if (window->callbacks.mouseButton)
-        window->callbacks.mouseButton((GLFWwindow*) window, button, action, mods);
 }
 
 // Notifies shared code of a cursor motion event
@@ -598,16 +592,6 @@ GLFWAPI void glfwSetCursor(GLFWwindow* windowHandle, GLFWcursor* cursorHandle)
     _glfw.platform.setCursor(window, cursor);
 }
 
-GLFWAPI GLFWkeyfun glfwSetKeyCallback(GLFWwindow* handle, GLFWkeyfun cbfun)
-{
-    _GLFWwindow* window = (_GLFWwindow*) handle;
-    assert(window != NULL);
-
-    _GLFW_REQUIRE_INIT_OR_RETURN(NULL);
-    _GLFW_SWAP(GLFWkeyfun, window->callbacks.key, cbfun);
-    return cbfun;
-}
-
 GLFWAPI GLFWcharfun glfwSetCharCallback(GLFWwindow* handle, GLFWcharfun cbfun)
 {
     _GLFWwindow* window = (_GLFWwindow*) handle;
@@ -625,17 +609,6 @@ GLFWAPI GLFWcharmodsfun glfwSetCharModsCallback(GLFWwindow* handle, GLFWcharmods
 
     _GLFW_REQUIRE_INIT_OR_RETURN(NULL);
     _GLFW_SWAP(GLFWcharmodsfun, window->callbacks.charmods, cbfun);
-    return cbfun;
-}
-
-GLFWAPI GLFWmousebuttonfun glfwSetMouseButtonCallback(GLFWwindow* handle,
-                                                      GLFWmousebuttonfun cbfun)
-{
-    _GLFWwindow* window = (_GLFWwindow*) handle;
-    assert(window != NULL);
-
-    _GLFW_REQUIRE_INIT_OR_RETURN(NULL);
-    _GLFW_SWAP(GLFWmousebuttonfun, window->callbacks.mouseButton, cbfun);
     return cbfun;
 }
 

@@ -375,11 +375,9 @@ struct _GLFWwindow
         GLFWwindowmaximizefun     maximize;
         GLFWframebuffersizefun    fbsize;
         GLFWwindowcontentscalefun scale;
-        GLFWmousebuttonfun        mouseButton;
         GLFWcursorposfun          cursorPos;
         GLFWcursorenterfun        cursorEnter;
         GLFWscrollfun             scroll;
-        GLFWkeyfun                key;
         GLFWcharfun               character;
         GLFWcharmodsfun           charmods;
         GLFWdropfun               drop;

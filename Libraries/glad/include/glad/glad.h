@@ -19,7 +19,6 @@
         https://glad.dav1d.de/#profile=core&language=c&specification=gl&loader=on&api=gl%3D4.6
 */
 
-
 #ifndef __glad_h_
 #define __glad_h_
 
@@ -55,29 +54,7 @@ struct gladGLversionStruct {
 typedef void* (* GLADloadproc)(const char *name);
 
 #ifndef GLAPI
-# if defined(GLAD_GLAPI_EXPORT)
-#  if defined(_WIN32) || defined(__CYGWIN__)
-#   if defined(GLAD_GLAPI_EXPORT_BUILD)
-#    if defined(__GNUC__)
-#     define GLAPI __attribute__ ((dllexport)) extern
-#    else
-#     define GLAPI __declspec(dllexport) extern
-#    endif
-#   else
-#    if defined(__GNUC__)
-#     define GLAPI __attribute__ ((dllimport)) extern
-#    else
-#     define GLAPI __declspec(dllimport) extern
-#    endif
-#   endif
-#  elif defined(__GNUC__) && defined(GLAD_GLAPI_EXPORT_BUILD)
-#   define GLAPI __attribute__ ((visibility ("default"))) extern
-#  else
-#   define GLAPI extern
-#  endif
-# else
-#  define GLAPI extern
-# endif
+#define GLAPI extern
 #endif
 
 GLAPI struct gladGLversionStruct GLVersion;

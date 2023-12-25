@@ -529,7 +529,6 @@ GLFWbool _glfwConnectCocoa(int platformID, _GLFWplatform* platform)
         _glfwSetWindowSizeCocoa,
         _glfwSetWindowSizeLimitsCocoa,
         _glfwSetWindowAspectRatioCocoa,
-        _glfwGetFramebufferSizeCocoa,
         _glfwGetWindowFrameSizeCocoa,
         _glfwGetWindowContentScaleCocoa,
         _glfwIconifyWindowCocoa,

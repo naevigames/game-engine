@@ -10,6 +10,6 @@ namespace core
         virtual void init()    = 0;
         virtual void release() = 0;
 
-        virtual void poll_events() = 0;
+        virtual void poll_events() const = 0;
     };
 }

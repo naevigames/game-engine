@@ -2,7 +2,7 @@
 
 namespace window
 {
-    struct hint
+    struct param
     {
         int32_t flag;
         int32_t value;

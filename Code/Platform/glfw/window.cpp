@@ -1,4 +1,5 @@
 #include "window.hpp"
+#include "callbacks.hpp"
 
 namespace glfw
 {
@@ -23,7 +24,7 @@ namespace glfw
         glfwDestroyWindow(_handle);
     }
 
-    void Window::swap_buffers()
+    void Window::swap_buffers() const
     {
         glfwSwapBuffers(_handle);
     }
@@ -38,24 +39,23 @@ namespace glfw
         glfwSetWindowShouldClose(_handle, GLFW_TRUE);
     }
 
-    void Window::hint(const window::hint& hint)
+    void Window::hint(const window::param& hint)
     {
         glfwWindowHint(hint.flag, hint.value);
     }
 
-    void Window::register_size_callback()
+    void Window::register_user_pointer()
     {
         glfwSetWindowUserPointer(_handle, (void*)this);
-        glfwSetFramebufferSizeCallback(_handle, size_callback);
+    }
+
+    void Window::register_size_callback()
+    {
+        glfwSetFramebufferSizeCallback(_handle, Callbacks::size_callback);
     }
 
     bool Window::is_closed()
     {
         return glfwWindowShouldClose(_handle);
-    }
-
-    void Window::size_callback(GLFWwindow* handle, int32_t width, int32_t height)
-    {
-        window::Screen::set_size(width, height);
     }
 }
