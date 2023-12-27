@@ -1,6 +1,5 @@
 
 #include <gainput/gainput.h>
-#include <gainput/GainputDebugRenderer.h>
 
 #include "GainputInputDeviceBuiltInImpl.h"
 #include <gainput/GainputInputDeltaState.h>
