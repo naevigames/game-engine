@@ -206,15 +206,6 @@ public:
 	/// [IN dev BUILDS ONLY] Initiate sending of device state changes to the given device.
 	void StartDeviceStateSync(DeviceId deviceId);
 
-	/// Enable/disable debug rendering of input devices.
-	void SetDebugRenderingEnabled(bool enabled);
-	/// Returns true if debug rendering is enabled, false otherwise.
-	bool IsDebugRenderingEnabled() const { return debugRenderingEnabled_; }
-	/// Sets the debug renderer to be used if debug rendering is enabled.
-	void SetDebugRenderer(DebugRenderer* debugRenderer);
-	/// Returns the previously set debug renderer.
-	DebugRenderer* GetDebugRenderer() const { return debugRenderer_; }
-
 private:
 	Allocator& allocator_;
 
@@ -250,9 +241,6 @@ private:
 	int displayWidth_;
 	int displayHeight_;
 	bool useSystemTime_;
-
-	bool debugRenderingEnabled_;
-	DebugRenderer* debugRenderer_;
     
 	void DeviceCreated(InputDevice* device);
 

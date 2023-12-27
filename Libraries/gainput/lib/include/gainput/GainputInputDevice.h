@@ -150,22 +150,6 @@ public:
 	/// Sets the dead zone for the given button.
 	void SetDeadZone(DeviceButtonId buttonId, float value);
 
-	/// Enable/disable debug rendering of this device.
-	void SetDebugRenderingEnabled(bool enabled);
-	/// Returns true if debug rendering is enabled, false otherwise.
-	bool IsDebugRenderingEnabled() const { return debugRenderingEnabled_; }
-
-#if defined(GAINPUT_DEV) || defined(GAINPUT_ENABLE_RECORDER)
-	/// Returns true if this device is being controlled by a remote device 
-	/// or a recorded input sequence, false otherwise.
-	bool IsSynced() const { return synced_; }
-	/// Sets if this device is being controlled remotely or from a recording.
-	/**
-	 * \sa IsSynced()
-	 */
-	void SetSynced(bool synced) { synced_ = synced; }
-#endif
-
 protected:
 	/// The manager this device belongs to.
 	InputManager& manager_;
@@ -182,15 +166,6 @@ protected:
 	InputState* previousState_;
 
 	float* deadZones_;
-
-	/// Specifies if this device is currently rendering debug information.
-	bool debugRenderingEnabled_;
-
-#if defined(GAINPUT_DEV) || defined(GAINPUT_ENABLE_RECORDER)
-	/// Specifies if this device's state is actually set from a device
-	/// or manually set by some other system.
-	bool synced_;
-#endif
 
 	/// Implementation of the device's Update function.
 	/**

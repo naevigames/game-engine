@@ -1,6 +1,5 @@
 
 #include <gainput/gainput.h>
-#include <gainput/GainputDebugRenderer.h>
 
 #include "GainputInputDeviceMouseImpl.h"
 #include "GainputInputDeviceMouseNull.h"
@@ -72,24 +71,6 @@ void
 InputDeviceMouse::InternalUpdate(InputDeltaState* delta)
 {
 	impl_->Update(delta);
-
-	if ((manager_.IsDebugRenderingEnabled() || IsDebugRenderingEnabled())
-		&& manager_.GetDebugRenderer())
-	{
-		DebugRenderer* debugRenderer = manager_.GetDebugRenderer();
-		InputState* state = GetInputState();
-		const float x = state->GetFloat(MouseAxisX);
-		const float y = state->GetFloat(MouseAxisY);
-		debugRenderer->DrawCircle(x, y, 0.01f);
-
-		for (int i = 0; i < MouseButtonCount; ++i)
-		{
-			if (state->GetBool(MouseButton0 + i))
-			{
-				debugRenderer->DrawCircle(x, y, 0.03f + (0.005f * float(i+1)));
-			}
-		}
-	}
 }
 
 InputDevice::DeviceState
