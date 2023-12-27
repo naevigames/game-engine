@@ -8,7 +8,7 @@ namespace base
     class PlatformFactory
     {
     public:
-        [[nodiscard]] virtual Platform* create_platform() const = 0;
-        [[nodiscard]] virtual Window*   create_window()   const = 0;
+        [[nodiscard]] virtual std::unique_ptr<Platform> create_platform() const = 0;
+        [[nodiscard]] virtual std::unique_ptr<Window>   create_window()   const = 0;
     };
 }

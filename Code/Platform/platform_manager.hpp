@@ -14,6 +14,6 @@ public:
     bool is_active() const;
 
 private:
-    Platform* _platform;
-    Window*   _window;
+    std::unique_ptr<Platform> _platform;
+    std::unique_ptr<Window>   _window;    // TODO add an active bool here and set it true if you close the window in close callback?
 };

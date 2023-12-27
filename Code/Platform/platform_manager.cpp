@@ -31,10 +31,8 @@ void PlatformManager::update()
 void PlatformManager::release()
 {
     _window->destroy();
-     delete _window;
 
     _platform->release();
-     delete _platform;
 }
 
 bool PlatformManager::is_active() const

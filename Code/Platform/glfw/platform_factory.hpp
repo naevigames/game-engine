@@ -7,7 +7,7 @@ namespace glfw
     class PlatformFactory final : public base::PlatformFactory
     {
     public:
-        [[nodiscard]] base::Platform* create_platform() const final;
-        [[nodiscard]] base::Window*   create_window()   const final;
+        [[nodiscard]] std::unique_ptr<base::Platform> create_platform() const final;
+        [[nodiscard]] std::unique_ptr<base::Window>   create_window()   const final;
     };
 }
