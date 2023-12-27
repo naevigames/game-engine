@@ -12,8 +12,8 @@ void PlatformManager::init(PlatformFactory* factory, const window::config& confi
 
     _platform->init();
 
-    _window->hint({ GLFW_CONTEXT_VERSION_MAJOR, 3 });
-    _window->hint({ GLFW_CONTEXT_VERSION_MINOR, 3 });
+    _window->hint({ GLFW_CONTEXT_VERSION_MAJOR, 4 });
+    _window->hint({ GLFW_CONTEXT_VERSION_MINOR, 1 });
     _window->hint({ GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE });
     _window->hint({ GLFW_SAMPLES, 4 });
 
