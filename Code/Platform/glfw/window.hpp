@@ -15,11 +15,11 @@ namespace glfw
 
         void swap_buffers() const final;
 
-        void hint(const window::param& hint) final;
-
         void register_user_pointer()   final;
         void register_size_callback()  final;
         void register_close_callback() final;
+
+        void hint(const window::param& hint) final;
 
     private:
         GLFWwindow* _handle;
