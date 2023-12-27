@@ -6,7 +6,7 @@ namespace glfw
     {
         if (glfwInit() == GLFW_FALSE)
         {
-            exit(EXIT_FAILURE);
+            std::exit(EXIT_FAILURE);
         }
     }
 
