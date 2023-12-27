@@ -14,8 +14,7 @@ void Time::update()
     _last_time  = current;
 }
 
-
-float Time::delta_time() const
+float Time::delta_time()
 {
     return _delta_time;
 }

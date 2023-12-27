@@ -9,9 +9,9 @@ public:
     void init();
     void update();
 
-    float delta_time() const;
+    static float delta_time();
 
 private:
-    chrono_time _last_time;
-    float       _delta_time;
+    inline static float _delta_time { };
+            chrono_time _last_time;
 };
