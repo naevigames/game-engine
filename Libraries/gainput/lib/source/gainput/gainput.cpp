@@ -123,8 +123,6 @@ Name | Description
 -----|------------
 \c GAINPUT_DEBUG | Enables debugging of the library itself, i.e. enables a lot of internal logs and checks.
 \c GAINPUT_DEV | Enables the built-in development tool server that external tools or other Gainput instances can connect to.
-\c GAINPUT_ENABLE_ALL_GESTURES | Enables all gestures. Note that there is also an individual define for each gesture (see gainput::InputGesture).
-\c GAINPUT_ENABLE_RECORDER | Enables recording of inputs.
 \c GAINPUT_LIB_BUILD | Should be set if Gainput is being built as a library.
 
 
@@ -202,9 +200,6 @@ These gamepads have been tested and are explicitly supported:
 These gamepads have been tested and are explicitly supported:
 - Microsoft X-Box 360 pad
 - Sony PLAYSTATION(R)3 Controller
-
-\section platform_windows Windows
-The gamepad support is implemented using XINPUT which is Microsoft's most current API for such devices. However, that means that only Xbox 360 pads and compatible devices are supported.
 
 
 \page page_dependencies Dependencies

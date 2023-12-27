@@ -42,8 +42,6 @@
 
 //#define GAINPUT_DEBUG
 //#define GAINPUT_DEV
-#define GAINPUT_ENABLE_ALL_GESTURES
-#define GAINPUT_ENABLE_RECORDER
 #define GAINPUT_TEXT_INPUT_QUEUE_LENGTH 32
 
 #ifdef GAINPUT_ENABLE_CONCURRENCY
@@ -168,7 +166,6 @@ void DevSetHttp(bool enable);
 #define GAINPUT_VER_GET_MAJOR(ver)	(ver >> GAINPUT_VER_MAJOR_SHIFT)
 #define GAINPUT_VER_GET_MINOR(ver)	(ver & (uint32_t(-1) >> GAINPUT_VER_MAJOR_SHIFT))
 
-
 #include <gainput/GainputAllocator.h>
 #include <gainput/GainputContainers.h>
 #include <gainput/GainputInputState.h>
@@ -179,15 +176,6 @@ void DevSetHttp(bool enable);
 
 #include <gainput/GainputInputDeviceMouse.h>
 #include <gainput/GainputInputDeviceKeyboard.h>
-#include <gainput/GainputInputDevicePad.h>
-#include <gainput/GainputInputDeviceTouch.h>
 #include <gainput/GainputInputDeviceBuiltIn.h>
 
-#include <gainput/gestures/GainputGestures.h>
-
-#include <gainput/recorder/GainputInputRecording.h>
-#include <gainput/recorder/GainputInputPlayer.h>
-#include <gainput/recorder/GainputInputRecorder.h>
-
 #endif
-
