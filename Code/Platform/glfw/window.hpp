@@ -1,10 +1,10 @@
 #pragma once
 
-#include "core/window.hpp"
+#include "base/window.hpp"
 
 namespace glfw
 {
-    class Window final : public core::Window
+    class Window final : public base::Window
     {
     public:
         Window();

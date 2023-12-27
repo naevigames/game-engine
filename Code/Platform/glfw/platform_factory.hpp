@@ -1,13 +1,13 @@
 #pragma once
 
-#include "core/platform_factory.hpp"
+#include "base/platform_factory.hpp"
 
 namespace glfw
 {
-    class PlatformFactory final : public core::PlatformFactory
+    class PlatformFactory final : public base::PlatformFactory
     {
     public:
-        [[nodiscard]] core::Platform* create_platform() const final;
-        [[nodiscard]] core::Window*   create_window()   const final;
+        [[nodiscard]] base::Platform* create_platform() const final;
+        [[nodiscard]] base::Window*   create_window()   const final;
     };
 }

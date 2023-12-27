@@ -3,7 +3,7 @@
 #include "platform.hpp"
 #include "window.hpp"
 
-namespace core
+namespace base
 {
     class PlatformFactory
     {

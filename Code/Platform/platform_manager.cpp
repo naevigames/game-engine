@@ -1,6 +1,6 @@
 #include "platform_manager.hpp"
 
-PlatformManager::PlatformManager(core::Platform* platform, core::Window* window)
+PlatformManager::PlatformManager(Platform* platform, Window* window)
     : _platform { platform }
     , _window   { window }
 {

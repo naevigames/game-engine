@@ -4,12 +4,12 @@
 
 namespace glfw
 {
-    core::Platform* PlatformFactory::create_platform() const
+    base::Platform* PlatformFactory::create_platform() const
     {
         return new Platform;
     }
 
-    core::Window* PlatformFactory::create_window() const
+    base::Window* PlatformFactory::create_window() const
     {
         return new Window;
     }
