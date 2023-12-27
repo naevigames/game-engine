@@ -4737,48 +4737,6 @@ GLFWAPI void glfwSetClipboardString(GLFWwindow* window, const char* string);
  */
 GLFWAPI const char* glfwGetClipboardString(GLFWwindow* window);
 
-/*! @brief Returns the current value of the raw timer.
- *
- *  This function returns the current value of the raw timer, measured in
- *  1&nbsp;/&nbsp;frequency seconds.  To get the frequency, call @ref
- *  glfwGetTimerFrequency.
- *
- *  @return The value of the timer, or zero if an
- *  [error](@ref error_handling) occurred.
- *
- *  @errors Possible errors include @ref GLFW_NOT_INITIALIZED.
- *
- *  @thread_safety This function may be called from any thread.
- *
- *  @sa @ref time
- *  @sa @ref glfwGetTimerFrequency
- *
- *  @since Added in version 3.2.
- *
- *  @ingroup input
- */
-GLFWAPI uint64_t glfwGetTimerValue(void);
-
-/*! @brief Returns the frequency, in Hz, of the raw timer.
- *
- *  This function returns the frequency, in Hz, of the raw timer.
- *
- *  @return The frequency of the timer, in Hz, or zero if an
- *  [error](@ref error_handling) occurred.
- *
- *  @errors Possible errors include @ref GLFW_NOT_INITIALIZED.
- *
- *  @thread_safety This function may be called from any thread.
- *
- *  @sa @ref time
- *  @sa @ref glfwGetTimerValue
- *
- *  @since Added in version 3.2.
- *
- *  @ingroup input
- */
-GLFWAPI uint64_t glfwGetTimerFrequency(void);
-
 /*! @brief Makes the context of the specified window current for the calling
  *  thread.
  *
