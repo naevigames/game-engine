@@ -15,30 +15,16 @@ if(APPLE)
 	file(GLOB_RECURSE mmsources source/*.mm)
 endif()
 
-## build STATIC *or* SHARED
-if (GAINPUT_BUILD_SHARED)
-  message(STATUS "..Building shared libraries (-DGAINPUT_BUILD_SHARED=OFF to disable)")
-  add_library(gainput SHARED ${sources} ${mmsources})
-  set_target_properties(gainput PROPERTIES
-    OUTPUT_NAME gainput
-    DEBUG_POSTFIX -d
-    VERSION ${GAINPUT_VERSION}
-    SOVERSION ${GAINPUT_MAJOR_VERSION}
-    FOLDER gainput
-  )
-  set(install_libs ${install_libs} gainput)
-endif (GAINPUT_BUILD_SHARED)
-
 if (GAINPUT_BUILD_STATIC)
   message(STATUS "..Building static libraries (-DGAINPUT_BUILD_STATIC=OFF to disable)")
-  add_library(gainputstatic STATIC ${sources} ${mmsources})
-  set_target_properties(gainputstatic PROPERTIES DEBUG_POSTFIX -d FOLDER gainput)
-  set(install_libs ${install_libs} gainputstatic)
+  add_library(${PROJECT_NAME} STATIC ${sources} ${mmsources})
+  set_target_properties(gainput PROPERTIES DEBUG_POSTFIX -d FOLDER gainput)
+  set(install_libs ${install_libs} gainput)
 endif (GAINPUT_BUILD_STATIC)
 
+target_include_directories(${PROJECT_NAME} PUBLIC include/)
+
 if(WIN32)
-	target_link_libraries(gainput)
-	target_link_libraries(gainputstatic)
 	add_definitions(-DGAINPUT_LIB_DYNAMIC=1)
 elseif(APPLE)
 	find_library(FOUNDATION Foundation)
