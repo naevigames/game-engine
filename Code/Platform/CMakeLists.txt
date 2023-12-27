@@ -10,4 +10,5 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC GLFW_INCLUDE_NONE)
 target_link_libraries(${PROJECT_NAME}      PUBLIC gainput glad PRIVATE glfw)
 
 target_sources(${PROJECT_NAME} PRIVATE platform_manager.cpp window/screen.cpp
-                                  glfw/platform.cpp glfw/platform_factory.cpp glfw/window.cpp glfw/callbacks.cpp)
+                                  glfw/platform.cpp glfw/platform_factory.cpp glfw/window.cpp glfw/callbacks.cpp
+                                   win/platform.cpp  win/platform_factory.cpp  win/window.cpp)
