@@ -1,15 +1,11 @@
 #include "platform_manager.hpp"
 
-PlatformManager::PlatformManager(Platform* platform, Window* window)
-    : _platform { platform }
-    , _window   { window }
+void PlatformManager::init(PlatformFactory* factory, const window::config& config)
 {
-}
-
-void PlatformManager::init(const window::config& config)
-{
+    _platform = factory->create_platform();
     _platform->init();
 
+    _window = factory->create_window();
     _window->hint({ GLFW_CONTEXT_VERSION_MAJOR, 3 });
     _window->hint({ GLFW_CONTEXT_VERSION_MINOR, 3 });
     _window->hint({ GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE });
@@ -39,4 +35,9 @@ void PlatformManager::release()
 
     _platform->release();
      delete _platform;
+}
+
+bool PlatformManager::is_active() const
+{
+    return !_window->is_closed();
 }

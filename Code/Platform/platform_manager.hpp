@@ -1,18 +1,17 @@
 #pragma once
 
-#include "base/platform.hpp"
-#include "base/window.hpp"
+#include "base/platform_factory.hpp"
 
 using namespace base;
 
 class PlatformManager
 {
 public:
-    PlatformManager(Platform* platform, Window* window);
-
-    void init(const window::config& config);
+    void init(PlatformFactory* factory, const window::config& config);
     void update();
     void release();
+
+    bool is_active() const;
 
 private:
     Platform* _platform;
