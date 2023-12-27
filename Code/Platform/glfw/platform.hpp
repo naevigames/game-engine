@@ -1,10 +1,10 @@
 #pragma once
 
-#include "core/platform.hpp"
+#include "base/platform.hpp"
 
 namespace glfw
 {
-    class Platform final : public core::Platform
+    class Platform final : public base::Platform
     {
     public:
         void init()    final;

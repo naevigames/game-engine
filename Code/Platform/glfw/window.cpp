@@ -13,7 +13,7 @@ namespace glfw
             _handle =  glfwCreateWindow(config.width, config.height, config.title.c_str(), nullptr);
         if (_handle == nullptr)
         {
-            exit(EXIT_FAILURE);
+            std::exit(EXIT_FAILURE);
         }
 
         window::Screen::set_size(config.width, config.height);

@@ -4,13 +4,13 @@
 
 namespace glfw
 {
-    core::Platform* PlatformFactory::create_platform() const
+    std::unique_ptr<base::Platform> PlatformFactory::create_platform() const
     {
-        return new Platform;
+        return std::make_unique<Platform>();
     }
 
-    core::Window* PlatformFactory::create_window() const
+std::unique_ptr<base::Window> PlatformFactory::create_window() const
     {
-        return new Window;
+        return std::make_unique<Window>();
     }
 }

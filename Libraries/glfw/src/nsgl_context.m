@@ -61,15 +61,16 @@ static void swapBuffersNSGL(_GLFWwindow* window)
 
         if (interval > 0)
         {
-            const double framerate = 60.0;
-            const uint64_t frequency = _glfwPlatformGetTimerFrequency();
-            const uint64_t value = _glfwPlatformGetTimerValue();
+            // TODO replace this with our timer?
+            //const double framerate = 60.0;
+            //const uint64_t frequency = _glfwPlatformGetTimerFrequency();
+            //const uint64_t value = _glfwPlatformGetTimerValue();
 
-            const double elapsed = value / (double) frequency;
-            const double period = 1.0 / framerate;
-            const double delay = period - fmod(elapsed, period);
+            //const double elapsed = value / (double) frequency;
+            //const double period = 1.0 / framerate;
+            //const double delay = period - fmod(elapsed, period);
 
-            usleep(floorl(delay * 1e6));
+            //usleep(floorl(delay * 1e6));
         }
     }
 

@@ -4,7 +4,7 @@
 #include "window/config.hpp"
 #include "window/screen.hpp"
 
-namespace core
+namespace base
 {
     class Window
     {
