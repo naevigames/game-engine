@@ -10,10 +10,17 @@ public:
     void init(PlatformFactory* factory, const window::config& config);
     void update();
     void release();
+    void shutdown();
 
-    bool is_active() const;
+    static PlatformManager& instance();
+
+    [[nodiscard]] bool is_active() const;
 
 private:
+    PlatformManager();
+
     std::unique_ptr<Platform> _platform;
-    std::unique_ptr<Window>   _window;    // TODO add an active bool here and set it true if you close the window in close callback?
+    std::unique_ptr<Window>   _window;
+
+    bool _is_active;
 };

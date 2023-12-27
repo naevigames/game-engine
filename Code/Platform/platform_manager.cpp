@@ -1,13 +1,19 @@
 #include "platform_manager.hpp"
 
+PlatformManager::PlatformManager()
+    : _is_active { }
+{
+}
+
 void PlatformManager::init(PlatformFactory* factory, const window::config& config)
 {
     _platform = factory->create_platform();
+    _window   = factory->create_window();
+
     _platform->init();
 
-    _window = factory->create_window();
-    _window->hint({ GLFW_CONTEXT_VERSION_MAJOR, 3 });
-    _window->hint({ GLFW_CONTEXT_VERSION_MINOR, 3 });
+    _window->hint({ GLFW_CONTEXT_VERSION_MAJOR, 4 });
+    _window->hint({ GLFW_CONTEXT_VERSION_MINOR, 1 });
     _window->hint({ GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE });
     _window->hint({ GLFW_SAMPLES, 4 });
 
@@ -16,6 +22,9 @@ void PlatformManager::init(PlatformFactory* factory, const window::config& confi
 
     _window->register_user_pointer();
     _window->register_size_callback();
+    _window->register_close_callback();
+
+    _is_active = true;
 
     gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
     glfwSwapInterval(1);
@@ -23,19 +32,32 @@ void PlatformManager::init(PlatformFactory* factory, const window::config& confi
 
 void PlatformManager::update()
 {
-    _window->swap_buffers();
+     assert(_is_active);
 
+    _window->swap_buffers();
     _platform->poll_events();
 }
 
 void PlatformManager::release()
 {
-    _window->destroy();
+     assert(!_is_active);
 
+    _window->destroy();
     _platform->release();
+}
+
+void PlatformManager::shutdown()
+{
+    _is_active = false;
 }
 
 bool PlatformManager::is_active() const
 {
-    return !_window->is_closed();
+    return _is_active;
+}
+
+PlatformManager& PlatformManager::instance()
+{
+    static PlatformManager instance;
+    return instance;
 }

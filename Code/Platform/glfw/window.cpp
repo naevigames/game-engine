@@ -34,11 +34,6 @@ namespace glfw
         glfwMakeContextCurrent(_handle);
     }
 
-    void Window::close()
-    {
-        glfwSetWindowShouldClose(_handle, GLFW_TRUE);
-    }
-
     void Window::hint(const window::param& hint)
     {
         glfwWindowHint(hint.flag, hint.value);
@@ -54,8 +49,8 @@ namespace glfw
         glfwSetFramebufferSizeCallback(_handle, Callbacks::size_callback);
     }
 
-    bool Window::is_closed()
+    void Window::register_close_callback()
     {
-        return glfwWindowShouldClose(_handle);
+        glfwSetWindowCloseCallback(_handle, Callbacks::close_callback);
     }
 }
