@@ -7,7 +7,7 @@ using namespace base;
 class PlatformManager
 {
 public:
-    void init(PlatformFactory* factory, const window::config& config);
+    void init(PlatformFactory* factory, const window_config& config);
     void update();
     void release();
     void shutdown();

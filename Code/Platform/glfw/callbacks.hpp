@@ -1,7 +1,5 @@
 #pragma once
 
-#include "window/screen.hpp"
-
 namespace glfw
 {
     class Callbacks

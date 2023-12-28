@@ -5,7 +5,7 @@ PlatformManager::PlatformManager()
 {
 }
 
-void PlatformManager::init(PlatformFactory* factory, const window::config& config)
+void PlatformManager::init(PlatformFactory* factory, const window_config& config)
 {
     _platform = factory->create_platform();
     _window   = factory->create_window();

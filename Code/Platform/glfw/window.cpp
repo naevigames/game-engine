@@ -1,5 +1,6 @@
 #include "window.hpp"
 #include "callbacks.hpp"
+#include "screen.hpp"
 
 namespace glfw
 {
@@ -8,7 +9,7 @@ namespace glfw
     {
     }
 
-    void Window::create(const window::config& config)
+    void Window::create(const base::window_config& config)
     {
             _handle =  glfwCreateWindow(config.width, config.height, config.title.c_str(), nullptr);
         if (_handle == nullptr)
@@ -34,9 +35,9 @@ namespace glfw
         glfwMakeContextCurrent(_handle);
     }
 
-    void Window::hint(const window::param& hint)
+    void Window::hint(const base::window_hint& hint)
     {
-        glfwWindowHint(hint.flag, hint.value);
+        glfwWindowHint(hint.first, hint.second);
     }
 
     void Window::register_user_pointer()

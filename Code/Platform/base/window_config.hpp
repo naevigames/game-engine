@@ -1,8 +1,10 @@
 #pragma once
 
-namespace window
+namespace base
 {
-    struct config
+    using  window_hint = std::pair<int32_t, int32_t>;
+
+    struct window_config
     {
         std::string title;
 

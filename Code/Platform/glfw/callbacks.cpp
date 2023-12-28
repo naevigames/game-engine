@@ -1,5 +1,6 @@
 #include "callbacks.hpp"
 #include "platform_manager.hpp"
+#include "screen.hpp"
 
 namespace glfw
 {
