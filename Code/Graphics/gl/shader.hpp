@@ -1,5 +1,7 @@
 #pragma once
 
+#include "base/object.hpp"
+
 namespace gl
 {
     class Shader
