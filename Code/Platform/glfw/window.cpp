@@ -1,6 +1,5 @@
 #include "window.hpp"
 #include "callbacks.hpp"
-#include "screen.hpp"
 
 namespace glfw
 {
@@ -9,15 +8,16 @@ namespace glfw
     {
     }
 
-    void Window::create(const base::window_config& config)
+    void Window::create(const window_config& config)
     {
-            _handle =  glfwCreateWindow(config.width, config.height, config.title.c_str(), nullptr);
+            _handle =  glfwCreateWindow(config.size.width,
+                                        config.size.height, config.title.c_str(), nullptr);
         if (_handle == nullptr)
         {
             std::exit(EXIT_FAILURE);
         }
 
-        window::Screen::set_size(config.width, config.height);
+        WindowScreen::set_size(config.size);
     }
 
     void Window::destroy()
@@ -35,7 +35,7 @@ namespace glfw
         glfwMakeContextCurrent(_handle);
     }
 
-    void Window::hint(const base::window_hint& hint)
+    void Window::hint(const window_hint& hint)
     {
         glfwWindowHint(hint.first, hint.second);
     }

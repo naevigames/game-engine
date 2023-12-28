@@ -1,6 +1,8 @@
 #pragma once
 
+#include "window_hint.hpp"
 #include "window_config.hpp"
+#include "window_screen.hpp"
 
 namespace base
 {

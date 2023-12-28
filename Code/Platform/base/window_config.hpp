@@ -1,14 +1,9 @@
 #pragma once
 
-namespace base
+#include "window_size.hpp"
+
+struct window_config
 {
-    using  window_hint = std::pair<int32_t, int32_t>;
-
-    struct window_config
-    {
-        std::string title;
-
-        int32_t width;
-        int32_t height;
-    };
-}
+    std::string title;
+    window_size size;
+};

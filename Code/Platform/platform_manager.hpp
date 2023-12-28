@@ -2,12 +2,10 @@
 
 #include "base/platform_factory.hpp"
 
-using namespace base;
-
 class PlatformManager
 {
 public:
-    void init(PlatformFactory* factory, const window_config& config);
+    void init(base::PlatformFactory* factory, const window_config& config);
     void update();
     void release();
     void shutdown();
@@ -19,8 +17,8 @@ public:
 private:
     PlatformManager();
 
-    std::unique_ptr<Platform> _platform;
-    std::unique_ptr<Window>   _window;
+    std::unique_ptr<base::Platform> _platform;
+    std::unique_ptr<base::Window>   _window;
 
     bool _is_active;
 };
