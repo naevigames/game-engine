@@ -9,7 +9,7 @@ namespace glfw
     public:
         Window();
 
-        void create(const window::config& config) final;
+        void create(const window_config& config) final;
         void destroy()  final;
         void activate() final;
 
@@ -19,7 +19,7 @@ namespace glfw
         void register_size_callback()  final;
         void register_close_callback() final;
 
-        void hint(const window::param& hint) final;
+        void hint(const window_hint& hint) final;
 
     private:
         GLFWwindow* _handle;
