@@ -12,9 +12,9 @@ public:
     void release();
     void shutdown();
 
-    static PlatformManager& instance();
-
     [[nodiscard]] bool is_active() const;
+
+    static PlatformManager& instance();
 
 private:
     PlatformManager();
