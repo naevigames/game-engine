@@ -1,5 +1,6 @@
 #include "window.hpp"
 #include "callbacks.hpp"
+#include "screen.hpp"
 
 namespace glfw
 {
@@ -17,7 +18,7 @@ namespace glfw
             std::exit(EXIT_FAILURE);
         }
 
-        WindowScreen::set_size(config.size);
+        Screen::set_size(config.size);
     }
 
     void Window::destroy()

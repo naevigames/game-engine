@@ -1,11 +1,12 @@
 #include "callbacks.hpp"
+#include "screen.hpp"
 #include "platform_manager.hpp"
 
 namespace glfw
 {
     void Callbacks::size_callback(GLFWwindow*, int32_t width, int32_t height)
     {
-        WindowScreen::set_size({ width, height });
+        Screen::set_size({ width, height });
     }
 
     void Callbacks::close_callback(GLFWwindow*)

@@ -16,6 +16,8 @@ namespace gl
         void detach(const ShaderStage& shader);
 
         void compile() const;
+
+    private:
         void status()  const;
     };
 }

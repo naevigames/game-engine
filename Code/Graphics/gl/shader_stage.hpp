@@ -12,7 +12,9 @@ namespace gl
         void create(int32_t type);
         void release();
 
-        void source(const char* data) const;
-        void status()                 const;
+        void source(const std::vector<char>& source) const;
+
+    private:
+        void status() const;
     };
 }
