@@ -1,17 +1,14 @@
 #pragma once
 
-template <typename type>
-class Object
+namespace base
 {
-public:
-    type handle() const
+    template<typename type>
+    class Object
     {
-        return _handle;
-    } // TODO remove this after Program class
-
-protected:
-    Object() : _handle { }
-    {
-    }
-    type       _handle;
-};
+    protected:
+        Object() : _handle{}
+        {
+        }
+        type       _handle;
+    };
+}
