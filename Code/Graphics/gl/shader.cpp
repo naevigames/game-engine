@@ -44,7 +44,7 @@ namespace gl
             char info[512];
             glGetProgramInfoLog(_handle, 512, nullptr, info);
 
-            std::cout << "program compilation failed\n" << info << "\n";
+            std::cout << std::format("program compilation failed\n{}", info);
         }
     }
 }

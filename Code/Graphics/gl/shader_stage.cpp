@@ -33,7 +33,7 @@ namespace gl
             char info[512];
             glGetShaderInfoLog(_handle, 512, nullptr, info);
 
-            std::cout << "shader compilation failed\n" << info << "\n";
+            std::cout << std::format("shader compilation failed\n{}",info);
         }
     }
 }
