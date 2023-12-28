@@ -4,7 +4,7 @@
 
 namespace gl
 {
-    class Shader final : public Object<uint32_t>
+    class Shader final : public base::Object<uint32_t>
     {
     public:
         friend class Program;

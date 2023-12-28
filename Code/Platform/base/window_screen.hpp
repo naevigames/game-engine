@@ -2,7 +2,7 @@
 
 #include "window_size.hpp"
 
-class WindowScreen
+class WindowScreen // TODO this will be removed when we have events?
 {
 public:
     WindowScreen() = delete;
