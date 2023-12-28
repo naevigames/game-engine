@@ -9,13 +9,6 @@ namespace gainput
 
 	inline void HandleButton(InputDevice& device, InputState& state, InputDeltaState* delta, DeviceButtonId buttonId, bool value)
 	{
-#ifdef GAINPUT_DEBUG
-		if (value != state.GetBool(buttonId))
-		{
-			GAINPUT_LOG("Button changed: %d, %i\n", buttonId, value);
-		}
-#endif
-
 		if (delta)
 		{
 			const bool oldValue = state.GetBool(buttonId);
@@ -45,12 +38,6 @@ namespace gainput
 				value *= 1.0f / (1.0f - deadZone);
 			}
 		}
-#ifdef GAINPUT_DEBUG
-		if (value != state.GetFloat(buttonId))
-		{
-			GAINPUT_LOG("Axis changed: %d, %f\n", buttonId, value);
-		}
-#endif
 
 		if (delta)
 		{
