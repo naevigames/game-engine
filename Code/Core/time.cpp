@@ -2,16 +2,16 @@
 
 void Time::init()
 {
-    _last_time = chrono_clock::now();
+    _offset = time_clock::now();
 }
 
 void Time::update()
 {
-    auto current = chrono_clock::now();
+    auto current = time_clock::now();
 
     _delta_time = std::chrono::duration<float,
-                  std::chrono::seconds::period>(current - _last_time).count();
-    _last_time  = current;
+                  std::chrono::seconds::period>(current - _offset).count();
+    _offset = current;
 }
 
 float Time::delta_time()
