@@ -4,10 +4,10 @@
 
 namespace gl
 {
-    class Shader
+    class Shader final : public Object<uint32_t>
     {
     public:
-        Shader();
+        friend class Program;
 
         void create(int32_t type);
         void release();
@@ -15,11 +15,7 @@ namespace gl
 
         void source(const char* data);
 
-        [[nodiscard]] uint32_t handle() const;
-
     private:
         void status();
-
-        uint32_t _handle;
     };
 }

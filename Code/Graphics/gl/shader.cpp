@@ -2,11 +2,6 @@
 
 namespace gl
 {
-    Shader::Shader()
-        : _handle { }
-    {
-    }
-
     void Shader::create(int32_t type)
     {
         _handle = glCreateShader(type);
@@ -27,11 +22,6 @@ namespace gl
     void Shader::source(const char* data)
     {
         glShaderSource(_handle, 1, &data, nullptr);
-    }
-
-    uint32_t Shader::handle() const
-    {
-        return _handle;
     }
 
     void Shader::status()
