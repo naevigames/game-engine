@@ -1,21 +1,20 @@
 #pragma once
 
-#include "base/object.hpp"
+#include "shader_stage.hpp"
 
 namespace gl
 {
     class Shader final : public base::Object<uint32_t>
     {
     public:
-        friend class Program;
-
-        void create(int32_t type);
+        void create();
         void release();
-        void compile();
 
-        void source(const char* data);
+        void attach(const ShaderStage& shader);
+        void detach(const ShaderStage& shader);
 
-    private:
-        void status();
+        void bind()    const;
+        void compile() const;
+        void status()  const;
     };
 }
