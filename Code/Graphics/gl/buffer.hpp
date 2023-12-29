@@ -1,8 +1,21 @@
 #pragma once
 
+#include "base/object.hpp"
+
 namespace gl
 {
-    class Buffer
+    class Buffer final : public base::Object<uint32_t>
     {
+    public:
+        Buffer(uint32_t target);
+
+        void create();
+        void release();
+
+        void bind() const;
+        void source(void* data, int32_t size) const;
+
+    private:
+        uint32_t _target;
     };
 }
