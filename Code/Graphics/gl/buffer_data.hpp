@@ -11,6 +11,9 @@ namespace gl
         {
         }
 
+        // TODO move make_data into buffer class base class??
+        // in this way you can move buffer_data outside from gl? or put it in the base folder
+
         template<typename type>
         static BufferData make_data(const std::vector<type>& buffer)
         {
