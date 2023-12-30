@@ -22,8 +22,8 @@ namespace gl
         glBindBuffer(_target, _handle);
     }
 
-    void Buffer::source(void* data, int32_t size) const
+    void Buffer::source(const BufferData& data) const
     {
-        glBufferData(_target, size, data, GL_STATIC_DRAW); // TODO usage to be a param of the function?
+        glBufferData(_target, data._size, data._ptr, GL_STATIC_DRAW); // TODO usage to be a param of the function?
     }
 }

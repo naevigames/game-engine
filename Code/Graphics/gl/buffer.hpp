@@ -1,6 +1,7 @@
 #pragma once
 
 #include "base/object.hpp"
+#include "buffer_data.hpp"
 
 namespace gl
 {
@@ -13,7 +14,7 @@ namespace gl
         void release();
 
         void bind() const;
-        void source(void* data, int32_t size) const;
+        void source(const BufferData& data) const;
 
     private:
         uint32_t _target;
