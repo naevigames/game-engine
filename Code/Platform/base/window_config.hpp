@@ -2,8 +2,11 @@
 
 #include "size.hpp"
 
-struct window_config
+namespace base
 {
-    std::string title;
-    size        size;
-};
+    struct window_config
+    {
+        std::string title;
+        size        size;
+    };
+}

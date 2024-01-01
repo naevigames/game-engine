@@ -1,11 +1,10 @@
 #pragma once
 
-#include "base/object.hpp"
-#include "buffer_data.hpp"
+#include "base/buffer.hpp"
 
 namespace gl
 {
-    class Buffer final : public base::Object<uint32_t>
+    class Buffer final : public base::Buffer
     {
     public:
         Buffer(uint32_t target);
@@ -14,7 +13,7 @@ namespace gl
         void release();
 
         void bind() const;
-        void source(const BufferData& data) const;
+        void source(const base::BufferData& data) const;
 
     private:
         uint32_t _target;
