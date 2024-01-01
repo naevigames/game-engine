@@ -1795,9 +1795,6 @@ GLAPI PFNGLDELETEBUFFERSPROC glad_glDeleteBuffers;
 typedef void (APIENTRYP PFNGLGENBUFFERSPROC)(GLsizei n, GLuint *buffers);
 GLAPI PFNGLGENBUFFERSPROC glad_glGenBuffers;
 #define glGenBuffers glad_glGenBuffers
-typedef GLboolean (APIENTRYP PFNGLISBUFFERPROC)(GLuint buffer);
-GLAPI PFNGLISBUFFERPROC glad_glIsBuffer;
-#define glIsBuffer glad_glIsBuffer
 typedef void (APIENTRYP PFNGLBUFFERDATAPROC)(GLenum target, GLsizeiptr size, const void *data, GLenum usage);
 GLAPI PFNGLBUFFERDATAPROC glad_glBufferData;
 #define glBufferData glad_glBufferData
@@ -1913,12 +1910,6 @@ GLAPI PFNGLGETVERTEXATTRIBIVPROC glad_glGetVertexAttribiv;
 typedef void (APIENTRYP PFNGLGETVERTEXATTRIBPOINTERVPROC)(GLuint index, GLenum pname, void **pointer);
 GLAPI PFNGLGETVERTEXATTRIBPOINTERVPROC glad_glGetVertexAttribPointerv;
 #define glGetVertexAttribPointerv glad_glGetVertexAttribPointerv
-typedef GLboolean (APIENTRYP PFNGLISPROGRAMPROC)(GLuint program);
-GLAPI PFNGLISPROGRAMPROC glad_glIsProgram;
-#define glIsProgram glad_glIsProgram
-typedef GLboolean (APIENTRYP PFNGLISSHADERPROC)(GLuint shader);
-GLAPI PFNGLISSHADERPROC glad_glIsShader;
-#define glIsShader glad_glIsShader
 typedef void (APIENTRYP PFNGLLINKPROGRAMPROC)(GLuint program);
 GLAPI PFNGLLINKPROGRAMPROC glad_glLinkProgram;
 #define glLinkProgram glad_glLinkProgram

@@ -608,16 +608,13 @@ PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC glad_glInvalidateNamedFramebufferSubD
 PFNGLINVALIDATESUBFRAMEBUFFERPROC glad_glInvalidateSubFramebuffer = NULL;
 PFNGLINVALIDATETEXIMAGEPROC glad_glInvalidateTexImage = NULL;
 PFNGLINVALIDATETEXSUBIMAGEPROC glad_glInvalidateTexSubImage = NULL;
-PFNGLISBUFFERPROC glad_glIsBuffer = NULL;
 PFNGLISENABLEDPROC glad_glIsEnabled = NULL;
 PFNGLISENABLEDIPROC glad_glIsEnabledi = NULL;
 PFNGLISFRAMEBUFFERPROC glad_glIsFramebuffer = NULL;
-PFNGLISPROGRAMPROC glad_glIsProgram = NULL;
 PFNGLISPROGRAMPIPELINEPROC glad_glIsProgramPipeline = NULL;
 PFNGLISQUERYPROC glad_glIsQuery = NULL;
 PFNGLISRENDERBUFFERPROC glad_glIsRenderbuffer = NULL;
 PFNGLISSAMPLERPROC glad_glIsSampler = NULL;
-PFNGLISSHADERPROC glad_glIsShader = NULL;
 PFNGLISSYNCPROC glad_glIsSync = NULL;
 PFNGLISTEXTUREPROC glad_glIsTexture = NULL;
 PFNGLISTRANSFORMFEEDBACKPROC glad_glIsTransformFeedback = NULL;
@@ -1083,7 +1080,6 @@ static void load_GL_VERSION_1_5(GLADloadproc load) {
 	glad_glBindBuffer = (PFNGLBINDBUFFERPROC)load("glBindBuffer");
 	glad_glDeleteBuffers = (PFNGLDELETEBUFFERSPROC)load("glDeleteBuffers");
 	glad_glGenBuffers = (PFNGLGENBUFFERSPROC)load("glGenBuffers");
-	glad_glIsBuffer = (PFNGLISBUFFERPROC)load("glIsBuffer");
 	glad_glBufferData = (PFNGLBUFFERDATAPROC)load("glBufferData");
 	glad_glBufferSubData = (PFNGLBUFFERSUBDATAPROC)load("glBufferSubData");
 	glad_glGetBufferSubData = (PFNGLGETBUFFERSUBDATAPROC)load("glGetBufferSubData");
@@ -1124,8 +1120,6 @@ static void load_GL_VERSION_2_0(GLADloadproc load) {
 	glad_glGetVertexAttribfv = (PFNGLGETVERTEXATTRIBFVPROC)load("glGetVertexAttribfv");
 	glad_glGetVertexAttribiv = (PFNGLGETVERTEXATTRIBIVPROC)load("glGetVertexAttribiv");
 	glad_glGetVertexAttribPointerv = (PFNGLGETVERTEXATTRIBPOINTERVPROC)load("glGetVertexAttribPointerv");
-	glad_glIsProgram = (PFNGLISPROGRAMPROC)load("glIsProgram");
-	glad_glIsShader = (PFNGLISSHADERPROC)load("glIsShader");
 	glad_glLinkProgram = (PFNGLLINKPROGRAMPROC)load("glLinkProgram");
 	glad_glShaderSource = (PFNGLSHADERSOURCEPROC)load("glShaderSource");
 	glad_glUseProgram = (PFNGLUSEPROGRAMPROC)load("glUseProgram");

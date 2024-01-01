@@ -31,11 +31,9 @@
 
 #include <assert.h>
 #include <string.h>
-#include <stdlib.h>
 
 #define _GLFW_FIND_LOADER    1
 #define _GLFW_REQUIRE_LOADER 2
-
 
 //////////////////////////////////////////////////////////////////////////
 //////                       GLFW internal API                      //////

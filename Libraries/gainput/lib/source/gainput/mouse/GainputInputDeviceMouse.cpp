@@ -1,26 +1,16 @@
-
 #include <gainput/gainput.h>
 
 #include "GainputInputDeviceMouseImpl.h"
-#include "GainputInputDeviceMouseNull.h"
 #include "GainputMouseInfo.h"
 #include <gainput/GainputInputDeltaState.h>
 #include <gainput/GainputHelpers.h>
 #include <gainput/GainputLog.h>
 
-#if defined(GAINPUT_PLATFORM_LINUX)
-	#include "GainputInputDeviceMouseLinux.h"
-	#include "GainputInputDeviceMouseEvdev.h"
-#elif defined(GAINPUT_PLATFORM_WIN)
-	#include "GainputInputDeviceMouseWin.h"
-	#include "GainputInputDeviceMouseWinRaw.h"
-#elif defined(GAINPUT_PLATFORM_MAC)
-	#include "GainputInputDeviceMouseMac.h"
-#endif
+#include "GainputInputDeviceMouseWin.h"
+#include "GainputInputDeviceMouseWinRaw.h"
 
 namespace gainput
 {
-
 
 InputDeviceMouse::InputDeviceMouse(InputManager& manager, DeviceId device, unsigned index, DeviceVariant variant) :
 	InputDevice(manager, device, index == InputDevice::AutoIndex ? manager.GetDeviceCountByType(DT_MOUSE) : index),
@@ -31,16 +21,6 @@ InputDeviceMouse::InputDeviceMouse(InputManager& manager, DeviceId device, unsig
 	previousState_ = manager.GetAllocator().New<InputState>(manager.GetAllocator(), MouseButtonCount + MouseAxisCount);
 	GAINPUT_ASSERT(previousState_);
 
-#if defined(GAINPUT_PLATFORM_LINUX)
-	if (variant == DV_STANDARD)
-	{
-		impl_ = manager.GetAllocator().New<InputDeviceMouseImplLinux>(manager, *this, *state_, *previousState_);
-	}
-	else if (variant == DV_RAW)
-	{
-		impl_ = manager.GetAllocator().New<InputDeviceMouseImplEvdev>(manager, *this, *state_, *previousState_);
-	}
-#elif defined(GAINPUT_PLATFORM_WIN)
 	if (variant == DV_STANDARD)
 	{
 		impl_ = manager.GetAllocator().New<InputDeviceMouseImplWin>(manager, *this, *state_, *previousState_);
@@ -49,14 +29,7 @@ InputDeviceMouse::InputDeviceMouse(InputManager& manager, DeviceId device, unsig
 	{
 		impl_ = manager.GetAllocator().New<InputDeviceMouseImplWinRaw>(manager, *this, *state_, *previousState_);
 	}
-#elif defined(GAINPUT_PLATFORM_MAC)
-	impl_ = manager.GetAllocator().New<InputDeviceMouseImplMac>(manager, *this, *state_, *previousState_);
-#endif
 
-	if (!impl_)
-	{
-		impl_ = manager.GetAllocator().New<InputDeviceMouseImplNull>(manager, device);
-	}
 	GAINPUT_ASSERT(impl_);
 }
 

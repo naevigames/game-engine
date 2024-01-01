@@ -2,39 +2,49 @@
 
 namespace gl
 {
-    void Shader::create(int32_t type)
+    void Shader::create()
     {
-        _handle = glCreateShader(type);
+        _handle = glCreateProgram();
     }
 
     void Shader::release()
     {
-        glDeleteShader(_handle);
+        glDeleteProgram(_handle);
     }
 
-    void Shader::compile()
+    void Shader::compile() const
     {
-        glCompileShader(_handle);
+        glLinkProgram(_handle);
 
         status();
     }
 
-    void Shader::source(const char* data)
+    void Shader::attach(const ShaderStage& shader)
     {
-        glShaderSource(_handle, 1, &data, nullptr);
+        glAttachShader(_handle, shader._handle);
     }
 
-    void Shader::status()
+    void Shader::detach(const ShaderStage& shader)
+    {
+        glDetachShader(_handle, shader._handle);
+    }
+
+    void Shader::bind() const
+    {
+        glUseProgram(_handle);
+    }
+
+    void Shader::status() const
     {
         int32_t success;
-        glGetShaderiv(_handle, GL_COMPILE_STATUS, &success);
+        glGetProgramiv(_handle, GL_LINK_STATUS, &success);
 
         if (!success)
         {
             char info[512];
-            glGetShaderInfoLog(_handle, 512, nullptr, info);
+            glGetProgramInfoLog(_handle, 512, nullptr, info);
 
-            std::cout << "shader compilation failed\n" << info << "\n";
+            std::cout << std::format("program compilation failed\n{}", info);
         }
     }
 }
