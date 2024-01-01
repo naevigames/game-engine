@@ -13,7 +13,7 @@ void PlatformManager::init(base::PlatformFactory* factory, const base::window_co
     _platform->init();
 
     _window->hint({ GLFW_CONTEXT_VERSION_MAJOR, 4 });
-    _window->hint({ GLFW_CONTEXT_VERSION_MINOR, 1 });
+    _window->hint({ GLFW_CONTEXT_VERSION_MINOR, 6 });
     _window->hint({ GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE });
     _window->hint({ GLFW_SAMPLES, 4 });
 

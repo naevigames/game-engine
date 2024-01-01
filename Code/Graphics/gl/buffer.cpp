@@ -17,6 +17,11 @@ namespace gl
         glDeleteBuffers(1, &_handle);
     }
 
+    void Buffer::bind(uint32_t index) const
+    {
+        glBindBufferBase(_target, index, _handle);
+    }
+
     void Buffer::bind() const
     {
         glBindBuffer(_target, _handle);

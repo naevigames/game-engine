@@ -12,7 +12,9 @@ namespace gl
         void create();
         void release();
 
-        void bind() const;
+        void bind(uint32_t index) const;
+        void bind()               const;
+
         void source(const base::BufferData& data) const;
 
     private:
