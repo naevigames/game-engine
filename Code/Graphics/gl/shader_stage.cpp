@@ -12,9 +12,12 @@ namespace gl
         glDeleteShader(_handle);
     }
 
-    void ShaderStage::source(const char* data) const
+    void ShaderStage::source(const std::vector<char>& source) const
     {
-        glShaderSource(_handle, 1, &data, nullptr);
+        auto size = static_cast<int32_t>(source.size());
+        auto data = source.data();
+
+        glShaderSource(_handle, 1, &data, &size);
         glCompileShader(_handle);
 
         status();
@@ -30,7 +33,7 @@ namespace gl
             char info[512];
             glGetShaderInfoLog(_handle, 512, nullptr, info);
 
-            std::cout << "shader compilation failed\n" << info << "\n";
+            std::cout << std::format("shader compilation failed\n{}",info);
         }
     }
 }

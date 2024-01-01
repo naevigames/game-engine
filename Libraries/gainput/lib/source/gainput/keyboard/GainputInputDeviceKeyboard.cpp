@@ -6,18 +6,8 @@
 #include <gainput/GainputHelpers.h>
 #include <gainput/GainputLog.h>
 
-#if defined(GAINPUT_PLATFORM_LINUX)
-	#include "GainputInputDeviceKeyboardLinux.h"
-	#include "GainputInputDeviceKeyboardEvdev.h"
-#elif defined(GAINPUT_PLATFORM_WIN)
-	#include "GainputInputDeviceKeyboardWin.h"
-	#include "GainputInputDeviceKeyboardWinRaw.h"
-#elif defined(GAINPUT_PLATFORM_MAC)
-	#include "GainputInputDeviceKeyboardMac.h"
-#endif
-
-#include "GainputInputDeviceKeyboardNull.h"
-
+#include "GainputInputDeviceKeyboardWin.h"
+#include "GainputInputDeviceKeyboardWinRaw.h"
 
 namespace gainput
 {
@@ -32,16 +22,6 @@ InputDeviceKeyboard::InputDeviceKeyboard(InputManager& manager, DeviceId device,
 	previousState_ = manager.GetAllocator().New<InputState>(manager.GetAllocator(), KeyCount_);
 	GAINPUT_ASSERT(previousState_);
 
-#if defined(GAINPUT_PLATFORM_LINUX)
-	if (variant == DV_STANDARD)
-	{
-		impl_ = manager.GetAllocator().New<InputDeviceKeyboardImplLinux>(manager, *this, *state_, *previousState_);
-	}
-	else if (variant == DV_RAW)
-	{
-		impl_ = manager.GetAllocator().New<InputDeviceKeyboardImplEvdev>(manager, *this, *state_, *previousState_);
-	}
-#elif defined(GAINPUT_PLATFORM_WIN)
 	if (variant == DV_STANDARD)
 	{
 		impl_ = manager.GetAllocator().New<InputDeviceKeyboardImplWin>(manager, *this, *state_, *previousState_);
@@ -49,16 +29,6 @@ InputDeviceKeyboard::InputDeviceKeyboard(InputManager& manager, DeviceId device,
 	else if (variant == DV_RAW)
 	{
 		impl_ = manager.GetAllocator().New<InputDeviceKeyboardImplWinRaw>(manager, *this, *state_, *previousState_);
-	}
-#elif defined(GAINPUT_PLATFORM_ANDROID)
-	impl_ = manager.GetAllocator().New<InputDeviceKeyboardImplAndroid>(manager, *this, *state_, *previousState_);
-#elif defined(GAINPUT_PLATFORM_MAC)
-	impl_ = manager.GetAllocator().New<InputDeviceKeyboardImplMac>(manager, *this, *state_, *previousState_);
-#endif
-
-	if (!impl_)
-	{
-		impl_ = manager.GetAllocator().New<InputDeviceKeyboardImplNull>(manager, device);
 	}
 
 	GAINPUT_ASSERT(impl_);

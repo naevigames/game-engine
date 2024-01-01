@@ -5,7 +5,7 @@
 class PlatformManager
 {
 public:
-    void init(base::PlatformFactory* factory, const window_config& config);
+    void init(base::PlatformFactory* factory, const base::window_config& config);
     void update();
     void release();
     void shutdown();

@@ -1,6 +1,6 @@
-#include "window_screen.hpp"
+#include "screen.hpp"
 
-void WindowScreen::set_size(const window_size& size)
+void Screen::set_size(const size& size)
 {
     _width  = size.width;
     _height = size.height;
@@ -9,17 +9,17 @@ void WindowScreen::set_size(const window_size& size)
               static_cast<float>(_height);
 }
 
-int32_t WindowScreen::width()
+int32_t Screen::width()
 {
     return _width;
 }
 
-int32_t WindowScreen::height()
+int32_t Screen::height()
 {
     return _height;
 }
 
-float WindowScreen::ratio()
+float Screen::ratio()
 {
     return _ratio;
 }

@@ -1,17 +1,17 @@
 #pragma once
 
-#include "window_size.hpp"
+#include "size.hpp"
 
-class WindowScreen // TODO this will be removed when we have events?
+class Screen // TODO this will be removed when we have events?
 {
 public:
-    WindowScreen() = delete;
+    Screen() = delete;
 
     static int32_t width();
     static int32_t height();
     static float   ratio();
 
-    static void set_size(const window_size& size);
+    static void set_size(const size& size);
 
 private:
     inline static int32_t _width  { };

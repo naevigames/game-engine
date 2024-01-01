@@ -1,9 +1,12 @@
 #pragma once
 
-#include "window_size.hpp"
+#include "size.hpp"
 
-struct window_config
+namespace base
 {
-    std::string title;
-    window_size size;
-};
+    struct window_config
+    {
+        std::string title;
+        size        size;
+    };
+}

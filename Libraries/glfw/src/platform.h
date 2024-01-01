@@ -122,10 +122,6 @@
  #include "win32_thread.h"
  #define GLFW_PLATFORM_TLS_STATE    GLFW_WIN32_TLS_STATE
  #define GLFW_PLATFORM_MUTEX_STATE  GLFW_WIN32_MUTEX_STATE
-#elif defined(GLFW_BUILD_POSIX_THREAD)
- #include "posix_thread.h"
- #define GLFW_PLATFORM_TLS_STATE    GLFW_POSIX_TLS_STATE
- #define GLFW_PLATFORM_MUTEX_STATE  GLFW_POSIX_MUTEX_STATE
 #endif
 
 #if defined(_WIN32)

@@ -10,12 +10,13 @@ namespace gl
         void create();
         void release();
 
-        void bind() const;
-
         void attach(const ShaderStage& shader);
         void detach(const ShaderStage& shader);
 
+        void bind()    const;
         void compile() const;
+
+    private:
         void status()  const;
     };
 }
