@@ -6,6 +6,7 @@ class PlatformManager
 {
 public:
     void init(base::PlatformFactory* factory, const base::window_config& config);
+
     void update();
     void release();
     void shutdown();
@@ -18,6 +19,7 @@ private:
     PlatformManager();
 
     std::unique_ptr<base::Platform> _platform;
+    std::unique_ptr<base::Context>  _context;
     std::unique_ptr<base::Window>   _window;
 
     bool _is_active;

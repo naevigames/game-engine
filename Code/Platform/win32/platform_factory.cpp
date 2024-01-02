@@ -3,7 +3,7 @@
 #include "context.hpp"
 #include "window.hpp"
 
-namespace glfw
+namespace win32
 {
     std::unique_ptr<base::Platform> PlatformFactory::create_platform() const
     {

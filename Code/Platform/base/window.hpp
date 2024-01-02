@@ -5,7 +5,7 @@
 
 namespace base
 {
-    class Window
+    class Window // TODO make it a template with handle as private param
     {
     public:
         virtual ~Window() = default;
@@ -15,6 +15,7 @@ namespace base
         virtual void activate() = 0;
 
         virtual void swap_buffers() const = 0;
+        virtual void sync_buffers() const = 0;
 
         virtual void register_user_pointer()   = 0;
         virtual void register_size_callback()  = 0;
