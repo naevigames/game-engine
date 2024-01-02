@@ -7,6 +7,8 @@ namespace base
     public:
         virtual ~Context() = default;
 
-        virtual void load()  const = 0;
+        virtual void load()  const
+        {
+        };
     };
 }
