@@ -2,7 +2,7 @@
 
 namespace base
 {
-    template<typename type>
+    template <typename type>
     class Object
     {
     protected:

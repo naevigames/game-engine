@@ -5,7 +5,7 @@
 
 namespace base
 {
-    class Window // TODO make it a template with handle as private param
+    class Window
     {
     public:
         virtual ~Window() = default;
