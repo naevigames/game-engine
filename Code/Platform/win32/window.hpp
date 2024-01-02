@@ -2,13 +2,11 @@
 
 #include "base/window.hpp"
 
-namespace glfw
+namespace win32
 {
     class Window final : public base::Window
     {
     public:
-        Window();
-
         void create(const base::window_config& config) final;
         void destroy()  final;
         void activate() final;
@@ -21,8 +19,5 @@ namespace glfw
         void register_close_callback() final;
 
         void hint(const base::window_hint& hint) final;
-
-    private:
-        GLFWwindow* _handle;
     };
 }

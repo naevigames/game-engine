@@ -1,6 +1,6 @@
 #include "platform.hpp"
 
-namespace win
+namespace win32
 {
     void Platform::init()
     {

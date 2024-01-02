@@ -2,7 +2,7 @@
 
 #include "base/platform.hpp"
 
-namespace win
+namespace win32
 {
     class Platform final : public base::Platform
     {

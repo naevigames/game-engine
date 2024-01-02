@@ -31,6 +31,11 @@ namespace glfw
         glfwSwapBuffers(_handle);
     }
 
+    void Window::sync_buffers() const
+    {
+        glfwSwapInterval(1);
+    }
+
     void Window::activate()
     {
         glfwMakeContextCurrent(_handle);

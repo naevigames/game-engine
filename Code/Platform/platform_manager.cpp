@@ -8,6 +8,7 @@ PlatformManager::PlatformManager()
 void PlatformManager::init(base::PlatformFactory* factory, const base::window_config& config)
 {
     _platform = factory->create_platform();
+    _context  = factory->create_context();
     _window   = factory->create_window();
 
     _platform->init();
@@ -18,16 +19,17 @@ void PlatformManager::init(base::PlatformFactory* factory, const base::window_co
     _window->hint({ GLFW_SAMPLES, 4 });
 
     _window->create(config);
+
     _window->activate();
+    _window->sync_buffers();
 
     _window->register_user_pointer();
     _window->register_size_callback();
     _window->register_close_callback();
 
-    _is_active = true;
+    _context->load();
 
-    gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-    glfwSwapInterval(1);
+    _is_active = true;
 }
 
 void PlatformManager::update()

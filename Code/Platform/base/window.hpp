@@ -15,6 +15,7 @@ namespace base
         virtual void activate() = 0;
 
         virtual void swap_buffers() const = 0;
+        virtual void sync_buffers() const = 0;
 
         virtual void register_user_pointer()   = 0;
         virtual void register_size_callback()  = 0;
