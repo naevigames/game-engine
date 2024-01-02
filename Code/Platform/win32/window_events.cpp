@@ -1,22 +1,28 @@
 #include "window_events.hpp"
+#include "platform_manager.hpp"
+#include "screen.hpp"
 
 namespace win32
 {
-    LRESULT WindowEvents::on_event(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+    LRESULT WindowEvents::on_event(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
     {
-        switch (uMsg)
+        switch (msg)
         {
+            case WM_CLOSE:
+            {
+                PlatformManager::instance().shutdown();
+                return 0;
+            }
             case WM_SIZE:
             {
-                int width = LOWORD(lParam);  // Macro to get the low-order word.
-                int height = HIWORD(lParam); // Macro to get the high-order word.
+                const int width  = LOWORD(lparam);
+                const int height = HIWORD(lparam);
 
-                // Respond to the message:
-                //OnSize(hwnd, (UINT)wParam, width, height);
+                Screen::set_size({ width, height });
+                return 0;
             }
-            break;
         }
 
-        return DefWindowProc(hwnd, uMsg, wParam, lParam);
+        return DefWindowProc(hwnd, msg, wparam, lparam);
     }
 }

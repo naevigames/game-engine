@@ -7,6 +7,6 @@ namespace win32
     public:
         WindowEvents() = delete;
 
-        static LRESULT CALLBACK on_event(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+        static LRESULT CALLBACK on_event(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
     };
 }

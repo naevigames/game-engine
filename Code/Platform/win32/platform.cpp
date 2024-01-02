@@ -1,4 +1,5 @@
 #include "platform.hpp"
+#include "platform_manager.hpp"
 #include "window_events.hpp"
 
 namespace win32
@@ -23,12 +24,19 @@ namespace win32
 
     void Platform::poll_events() const
     {
-        MSG msg = { };
+        MSG msg;
 
-        while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+        while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if (msg.message == WM_QUIT)
+            {
+                PlatformManager::instance().shutdown();
+            }
+            else
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
         }
     }
 }
