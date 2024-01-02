@@ -1,5 +1,5 @@
 #include "window.hpp"
-#include "callbacks.hpp"
+#include "window_callbacks.hpp"
 #include "screen.hpp"
 
 namespace glfw
@@ -53,11 +53,11 @@ namespace glfw
 
     void Window::register_size_callback()
     {
-        glfwSetFramebufferSizeCallback(_handle, Callbacks::size_callback);
+        glfwSetFramebufferSizeCallback(_handle, WindowCallbacks::on_size_callback);
     }
 
     void Window::register_close_callback()
     {
-        glfwSetWindowCloseCallback(_handle, Callbacks::close_callback);
+        glfwSetWindowCloseCallback(_handle, WindowCallbacks::on_close_callback);
     }
 }
