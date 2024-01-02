@@ -7,6 +7,8 @@ namespace win32
     class Window final : public base::Window
     {
     public:
+        friend class PlatformManager;
+
         void create(const base::window_config& config) final;
         void destroy()  final;
         void activate() final;

@@ -1,4 +1,5 @@
 #include "platform_manager.hpp"
+#include "win32/window.hpp"
 
 PlatformManager::PlatformManager()
     : _is_active { }
@@ -62,4 +63,10 @@ PlatformManager& PlatformManager::instance()
 {
     static PlatformManager instance;
     return instance;
+}
+
+HWND PlatformManager::win32_handle() const
+{
+    auto   window = dynamic_cast<win32::Window*>(_window.get());
+    return window->_handle;
 }

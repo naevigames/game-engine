@@ -11,7 +11,8 @@ public:
     void release();
     void shutdown();
 
-    [[nodiscard]] bool is_active() const;
+    [[nodiscard]] HWND win32_handle() const;
+    [[nodiscard]] bool is_active()    const;
 
     static PlatformManager& instance();
 
