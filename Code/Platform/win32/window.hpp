@@ -19,5 +19,8 @@ namespace win32
         void register_close_callback() final;
 
         void hint(const base::window_hint& hint) final;
+
+    private:
+        HWND _handle;
     };
 }
