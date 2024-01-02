@@ -4,7 +4,7 @@ namespace win32
 {
     void Window::create(const base::window_config& config)
     {
-        _handle = CreateWindowEx(0, "win32_class", config.title.c_str(),
+        _handle = CreateWindowEx(0, "win32_engine_class", config.title.c_str(),
                                  WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
                                  config.size.width, config.size.height, nullptr, nullptr,
                                  GetModuleHandle(nullptr), nullptr);

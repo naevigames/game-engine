@@ -11,7 +11,7 @@ namespace win32
             .style         = CS_HREDRAW | CS_VREDRAW,
             .lpfnWndProc   = WindowEvents::on_event,
             .hInstance     = GetModuleHandle(nullptr),
-            .lpszClassName = "win32_class"
+            .lpszClassName = "win32_engine_class"
         };
 
         RegisterClass(&wc);
@@ -19,7 +19,7 @@ namespace win32
 
     void Platform::release()
     {
-        UnregisterClass("win32_class", GetModuleHandle(nullptr));
+        UnregisterClass("win32_engine_class", GetModuleHandle(nullptr));
     }
 
     void Platform::poll_events() const
