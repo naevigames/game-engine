@@ -1,7 +1,5 @@
-#include "glad/glad.h"
 #include "gainput/gainput.h"
+#include "glad/glad.h"
 
 #include <string>
 #include <memory>
-
-#include <windows.h>

@@ -4,9 +4,11 @@
 
 namespace vk
 {
-    class Instance final : private base::Object<VkInstance>
+    class Instance final : public base::Object<VkInstance>
     {
     public:
+        friend class Surface;
+
         void create();
         void release();
 
