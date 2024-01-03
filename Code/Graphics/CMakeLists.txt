@@ -12,3 +12,4 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC VK_USE_PLATFORM_WIN32_KHR)
 target_link_libraries(${PROJECT_NAME}      PUBLIC Vulkan::Vulkan glad)
 
 target_sources(${PROJECT_NAME} PRIVATE gl/shader_stage.cpp gl/shader.cpp gl/buffer.cpp gl/vertex_array.cpp)
+target_sources(${PROJECT_NAME} PRIVATE vk/instance.cpp)

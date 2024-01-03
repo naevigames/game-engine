@@ -6,7 +6,7 @@ namespace base
     class Object
     {
     protected:
-        Object() : _handle{}
+        Object() : _handle { }
         {
         }
         type       _handle;

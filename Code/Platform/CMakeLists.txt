@@ -10,6 +10,6 @@ target_compile_features(${PROJECT_NAME}    PUBLIC cxx_std_23)
 target_compile_definitions(${PROJECT_NAME} PUBLIC GLFW_INCLUDE_NONE)
 target_link_libraries(${PROJECT_NAME}      PUBLIC gainput glad PRIVATE Core glfw)
 
-target_sources(${PROJECT_NAME} PRIVATE platform_manager.cpp
-                                  glfw/platform.cpp  glfw/platform_factory.cpp  glfw/window.cpp  glfw/window_callbacks.cpp glfw/context.cpp
-                                 win32/platform.cpp win32/platform_factory.cpp win32/window.cpp win32/window_events.cpp)
+target_sources(${PROJECT_NAME} PRIVATE win32/platform.cpp win32/platform_factory.cpp win32/window.cpp win32/window_events.cpp)
+target_sources(${PROJECT_NAME} PRIVATE  glfw/platform.cpp  glfw/platform_factory.cpp  glfw/window.cpp  glfw/window_callbacks.cpp glfw/context.cpp)
+target_sources(${PROJECT_NAME} PRIVATE                          platform_manager.cpp)
