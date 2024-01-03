@@ -12,6 +12,7 @@ namespace win32
 
     void Window::destroy()
     {
+        DestroyWindow(_handle);
     }
 
     void Window::activate()
@@ -24,18 +25,6 @@ namespace win32
     }
 
     void Window::sync_buffers() const
-    {
-    }
-
-    void Window::register_user_pointer()
-    {
-    }
-
-    void Window::register_size_callback()
-    {
-    }
-
-    void Window::register_close_callback()
     {
     }
 

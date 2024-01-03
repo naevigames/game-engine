@@ -16,10 +16,6 @@ namespace win32
         void swap_buffers() const final;
         void sync_buffers() const final;
 
-        void register_user_pointer()   final;
-        void register_size_callback()  final;
-        void register_close_callback() final;
-
         void hint(const base::window_hint& hint) final;
 
     private:

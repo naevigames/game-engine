@@ -17,9 +17,15 @@ namespace base
         virtual void swap_buffers() const = 0;
         virtual void sync_buffers() const = 0;
 
-        virtual void register_user_pointer()   = 0;
-        virtual void register_size_callback()  = 0;
-        virtual void register_close_callback() = 0;
+        virtual void register_user_pointer()
+        {
+        }
+        virtual void register_size_callback()
+        {
+        };
+        virtual void register_close_callback()
+        {
+        };
 
         virtual void hint(const window_hint& hint) = 0;
     };
