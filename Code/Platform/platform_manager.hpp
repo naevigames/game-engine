@@ -5,14 +5,17 @@
 class PlatformManager
 {
 public:
-    int32_t init(base::PlatformFactory* factory);
+    int32_t init();
     void    release();
     void    update();
 
     static PlatformManager& instance();
 
-private:
-    PlatformManager() = default;
+    [[nodiscard]] const base::PlatformFactory* platform_factory() const;
 
-    std::unique_ptr<base::Platform> _platform;
+private:
+    std::unique_ptr<base::PlatformFactory> _platform_factory;
+    std::unique_ptr<base::Platform>        _platform;
+
+    PlatformManager() = default;
 };
