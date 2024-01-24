@@ -5,9 +5,11 @@
 class WindowManager
 {
 public:
-    bool init(const base::PlatformFactory* factory);
+    bool init(const base::PlatformFactory* factory, const base::window_config& config);
     void release();
     void update();
+
+    static WindowManager& instance();
 
 private:
     std::unique_ptr<base::Window> _window;
