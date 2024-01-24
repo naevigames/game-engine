@@ -410,12 +410,6 @@ GLFWAPI void glfwWindowHint(int hint, int value)
         case GLFW_CONTEXT_ROBUSTNESS:
             _glfw.hints.context.robustness = value;
             return;
-        case GLFW_OPENGL_FORWARD_COMPAT:
-            _glfw.hints.context.forward = value ? GLFW_TRUE : GLFW_FALSE;
-            return;
-        case GLFW_CONTEXT_DEBUG:
-            _glfw.hints.context.debug = value ? GLFW_TRUE : GLFW_FALSE;
-            return;
         case GLFW_CONTEXT_NO_ERROR:
             _glfw.hints.context.noerror = value ? GLFW_TRUE : GLFW_FALSE;
             return;
@@ -890,10 +884,6 @@ GLFWAPI int glfwGetWindowAttrib(GLFWwindow* handle, int attrib)
             return window->context.revision;
         case GLFW_CONTEXT_ROBUSTNESS:
             return window->context.robustness;
-        case GLFW_OPENGL_FORWARD_COMPAT:
-            return window->context.forward;
-        case GLFW_CONTEXT_DEBUG:
-            return window->context.debug;
         case GLFW_OPENGL_PROFILE:
             return window->context.profile;
         case GLFW_CONTEXT_RELEASE_BEHAVIOR:
