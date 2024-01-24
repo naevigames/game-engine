@@ -746,7 +746,6 @@ GLFWbool _glfwCreateContextWGL(_GLFWwindow* window,
 
     window->context.makeCurrent = makeContextCurrentWGL;
     window->context.swapBuffers = swapBuffersWGL;
-    window->context.swapInterval = swapIntervalWGL;
     window->context.extensionSupported = extensionSupportedWGL;
     window->context.getProcAddress = getProcAddressWGL;
     window->context.destroy = destroyContextWGL;

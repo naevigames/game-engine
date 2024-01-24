@@ -49,8 +49,6 @@ static GLFWerrorfun _glfwErrorCallback;
 static GLFWallocator _glfwInitAllocator;
 static _GLFWinitconfig _glfwInitHints =
 {
-    GLFW_TRUE,      // hat buttons
-    GLFW_ANGLE_PLATFORM_TYPE_NONE, // ANGLE backend
     GLFW_ANY_PLATFORM, // preferred platform
     NULL,           // vkGetInstanceProcAddr function
     {
@@ -112,12 +110,7 @@ static void terminate(void)
     _glfw.monitors = NULL;
     _glfw.monitorCount = 0;
 
-    _glfw_free(_glfw.mappings);
-    _glfw.mappings = NULL;
-    _glfw.mappingCount = 0;
-
     _glfwTerminateVulkan();
-    _glfw.platform.terminateJoysticks();
     _glfw.platform.terminate();
 
     _glfw.initialized = GLFW_FALSE;
@@ -439,8 +432,6 @@ GLFWAPI int glfwInit(void)
 
     _glfwPlatformSetTls(&_glfw.errorSlot, &_glfwMainThreadError);
 
-    _glfwInitGamepadMappings();
-
     _glfwPlatformInitTimer();
     _glfw.timer.offset = _glfwPlatformGetTimerValue();
 
@@ -462,12 +453,6 @@ GLFWAPI void glfwInitHint(int hint, int value)
 {
     switch (hint)
     {
-        case GLFW_JOYSTICK_HAT_BUTTONS:
-            _glfwInitHints.hatButtons = value;
-            return;
-        case GLFW_ANGLE_PLATFORM_TYPE:
-            _glfwInitHints.angleType = value;
-            return;
         case GLFW_PLATFORM:
             _glfwInitHints.platformID = value;
             return;
