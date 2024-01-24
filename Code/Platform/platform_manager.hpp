@@ -5,9 +5,9 @@
 class PlatformManager
 {
 public:
-    int32_t init(const base::PlatformFactory* factory);
-    void    release();
-    void    update();
+    bool init(const base::PlatformFactory* factory);
+    void release();
+    void update();
 
     static PlatformManager& instance();
 

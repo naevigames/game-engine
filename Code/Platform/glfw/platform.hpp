@@ -7,9 +7,8 @@ namespace glfw
     class Platform final : public base::Platform
     {
     public:
-        int32_t init() final;
-        void release() final;
-
-        void poll_events() const final;
+        bool init()         final;
+        void release()      final;
+        void update() const final;
     };
 }

@@ -1,6 +1,6 @@
 #include "platform_manager.hpp"
 
-int32_t PlatformManager::init(const base::PlatformFactory* factory)
+bool PlatformManager::init(const base::PlatformFactory* factory)
 {
            _platform = factory->create_platform();
     return _platform->init();
@@ -13,7 +13,7 @@ void PlatformManager::release()
 
 void PlatformManager::update()
 {
-    _platform->poll_events();
+    _platform->update();
 }
 
 PlatformManager& PlatformManager::instance()

@@ -2,9 +2,9 @@
 
 namespace glfw
 {
-    int32_t Platform::init()
+    bool Platform::init()
     {
-        return glfwInit();
+        return glfwInit() == GLFW_TRUE;
     }
 
     void Platform::release()
@@ -12,7 +12,7 @@ namespace glfw
         glfwTerminate();
     }
 
-    void Platform::poll_events() const
+    void Platform::update() const
     {
         glfwPollEvents();
     }
