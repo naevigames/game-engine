@@ -5,14 +5,20 @@
 class WindowManager
 {
 public:
-    bool init(const base::PlatformFactory* factory, const base::window_config& config);
+    void init(const base::PlatformFactory* factory, const base::window_config& config);
     void release();
     void update();
+
+    void shutdown();
+
+    [[nodiscard]] bool is_active() const;
 
     static WindowManager& instance();
 
 private:
+    WindowManager();
+
     std::unique_ptr<base::Window> _window;
 
-    WindowManager();
+    bool _active;
 };

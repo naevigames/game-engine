@@ -1,4 +1,5 @@
 #include "window.hpp"
+#include "window_callbacks.hpp"
 
 namespace glfw
 {
@@ -30,17 +31,21 @@ namespace glfw
 
     void Window::register_user_pointer()
     {
+        glfwSetWindowUserPointer(_handle, (void*)this);
     }
 
     void Window::register_size_callback()
     {
+        glfwSetFramebufferSizeCallback(_handle, WindowCallbacks::on_size_callback);
     }
 
     void Window::register_close_callback()
     {
+        glfwSetWindowCloseCallback(_handle, WindowCallbacks::on_close_callback);
     }
 
     void Window::hint(const base::window_hint& hint)
     {
+        glfwWindowHint(hint.first, hint.second);
     }
 }
