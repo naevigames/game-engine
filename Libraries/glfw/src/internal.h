@@ -741,7 +741,6 @@ struct _GLFWlibrary
 
     struct {
         GLFWmonitorfun  monitor;
-        GLFWjoystickfun joystick;
     } callbacks;
 
     // These are defined in platform.h

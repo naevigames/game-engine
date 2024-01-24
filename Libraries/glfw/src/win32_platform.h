@@ -66,8 +66,6 @@
 
 #include <wctype.h>
 #include <windows.h>
-#include <dinput.h>
-#include <xinput.h>
 #include <dbt.h>
 
 // HACK: Define macros that some windows.h variants don't
@@ -231,16 +229,6 @@ typedef enum
 #define ERROR_INVALID_VERSION_ARB 0x2095
 #define ERROR_INVALID_PROFILE_ARB 0x2096
 #define ERROR_INCOMPATIBLE_DEVICE_CONTEXTS_ARB 0x2054
-
-// xinput.dll function pointer typedefs
-typedef DWORD (WINAPI * PFN_XInputGetCapabilities)(DWORD,DWORD,XINPUT_CAPABILITIES*);
-typedef DWORD (WINAPI * PFN_XInputGetState)(DWORD,XINPUT_STATE*);
-#define XInputGetCapabilities _glfw.win32.xinput.GetCapabilities
-#define XInputGetState _glfw.win32.xinput.GetState
-
-// dinput8.dll function pointer typedefs
-typedef HRESULT (WINAPI * PFN_DirectInput8Create)(HINSTANCE,DWORD,REFIID,LPVOID*,LPUNKNOWN);
-#define DirectInput8Create _glfw.win32.dinput8.Create
 
 // user32.dll function pointer typedefs
 typedef BOOL (WINAPI * PFN_SetProcessDPIAware)(void);
@@ -419,18 +407,6 @@ typedef struct _GLFWlibraryWin32
     RAWINPUT*           rawInput;
     int                 rawInputSize;
     UINT                mouseTrailSize;
-
-    struct {
-        HINSTANCE                       instance;
-        PFN_DirectInput8Create          Create;
-        IDirectInput8W*                 api;
-    } dinput8;
-
-    struct {
-        HINSTANCE                       instance;
-        PFN_XInputGetCapabilities       GetCapabilities;
-        PFN_XInputGetState              GetState;
-    } xinput;
 
     struct {
         HINSTANCE                       instance;
