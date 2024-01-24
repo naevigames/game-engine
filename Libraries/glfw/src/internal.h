@@ -726,20 +726,6 @@ struct _GLFWlibrary
     } timer;
 
     struct {
-        GLFWbool        available;
-        void*           handle;
-        char*           extensions[2];
-        PFN_vkGetInstanceProcAddr GetInstanceProcAddr;
-        GLFWbool        KHR_surface;
-        GLFWbool        KHR_win32_surface;
-        GLFWbool        MVK_macos_surface;
-        GLFWbool        EXT_metal_surface;
-        GLFWbool        KHR_xlib_surface;
-        GLFWbool        KHR_xcb_surface;
-        GLFWbool        KHR_wayland_surface;
-    } vk;
-
-    struct {
         GLFWmonitorfun  monitor;
     } callbacks;
 
@@ -837,10 +823,6 @@ void _glfwFreeGammaArrays(GLFWgammaramp* ramp);
 void _glfwSplitBPP(int bpp, int* red, int* green, int* blue);
 
 void _glfwCenterCursorInContentArea(_GLFWwindow* window);
-
-GLFWbool _glfwInitVulkan(int mode);
-void _glfwTerminateVulkan(void);
-const char* _glfwGetVulkanResultString(VkResult result);
 
 size_t _glfwEncodeUTF8(char* s, uint32_t codepoint);
 char** _glfwParseUriList(char* text, int* count);

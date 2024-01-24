@@ -1,27 +1,10 @@
 add_library(glfw ${GLFW_LIBRARY_TYPE}
                  "${GLFW_SOURCE_DIR}/include/GLFW/glfw3.h"
                  "${GLFW_SOURCE_DIR}/include/GLFW/glfw3native.h"
-                 internal.h platform.h context.c init.c input.c monitor.c platform.c vulkan.c window.c)
+                 internal.h platform.h context.c init.c input.c monitor.c platform.c window.c)
 
-# The time, thread and module code is shared between all backends on a given OS,
-# including the null backend, which still needs those bits to be functional
-if (APPLE)
-    target_sources(glfw PRIVATE cocoa_time.h cocoa_time.c posix_thread.h
-                                posix_module.c posix_thread.c)
-elseif (WIN32)
-    target_sources(glfw PRIVATE win32_time.h win32_thread.h win32_module.c
-                                win32_time.c win32_thread.c)
-else()
-    target_sources(glfw PRIVATE posix_time.h posix_thread.h posix_module.c
-                                posix_time.c posix_thread.c)
-endif()
-
-if (GLFW_BUILD_COCOA)
-    target_compile_definitions(glfw PRIVATE _GLFW_COCOA)
-    target_sources(glfw PRIVATE cocoa_platform.h cocoa_joystick.h cocoa_init.m
-                                cocoa_joystick.m cocoa_monitor.m cocoa_window.m
-                                nsgl_context.m)
-endif()
+target_sources(glfw PRIVATE win32_time.h win32_thread.h win32_module.c
+                            win32_time.c win32_thread.c)
 
 if (GLFW_BUILD_WIN32)
     target_compile_definitions(glfw PRIVATE _GLFW_WIN32)
@@ -33,60 +16,6 @@ if (GLFW_BUILD_X11)
     target_sources(glfw PRIVATE x11_platform.h xkb_unicode.h x11_init.c
                                 x11_monitor.c x11_window.c xkb_unicode.c
                                 glx_context.c)
-endif()
-
-if (GLFW_BUILD_WAYLAND)
-    target_compile_definitions(glfw PRIVATE _GLFW_WAYLAND)
-    target_sources(glfw PRIVATE wl_platform.h xkb_unicode.h wl_init.c
-                                wl_monitor.c wl_window.c xkb_unicode.c)
-endif()
-
-if (GLFW_BUILD_X11 OR GLFW_BUILD_WAYLAND)
-    if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
-        target_sources(glfw PRIVATE linux_joystick.h linux_joystick.c)
-    endif()
-    target_sources(glfw PRIVATE posix_poll.h posix_poll.c)
-endif()
-
-if (GLFW_BUILD_WAYLAND)
-    include(CheckIncludeFiles)
-    include(CheckFunctionExists)
-    check_function_exists(memfd_create HAVE_MEMFD_CREATE)
-    if (HAVE_MEMFD_CREATE)
-        target_compile_definitions(glfw PRIVATE HAVE_MEMFD_CREATE)
-    endif()
-
-    find_program(WAYLAND_SCANNER_EXECUTABLE NAMES wayland-scanner)
-    if (NOT WAYLAND_SCANNER_EXECUTABLE)
-        message(FATAL_ERROR "Failed to find wayland-scanner")
-    endif()
-
-    macro(generate_wayland_protocol protocol_file)
-        set(protocol_path "${GLFW_SOURCE_DIR}/deps/wayland/${protocol_file}")
-
-        string(REGEX REPLACE "\\.xml$" "-client-protocol.h" header_file ${protocol_file})
-        string(REGEX REPLACE "\\.xml$" "-client-protocol-code.h" code_file ${protocol_file})
-
-        add_custom_command(OUTPUT ${header_file}
-            COMMAND "${WAYLAND_SCANNER_EXECUTABLE}" client-header "${protocol_path}" ${header_file}
-            DEPENDS "${protocol_path}"
-            VERBATIM)
-
-        add_custom_command(OUTPUT ${code_file}
-            COMMAND "${WAYLAND_SCANNER_EXECUTABLE}" private-code "${protocol_path}" ${code_file}
-            DEPENDS "${protocol_path}"
-            VERBATIM)
-
-        target_sources(glfw PRIVATE ${header_file} ${code_file})
-    endmacro()
-
-    generate_wayland_protocol("wayland.xml")
-    generate_wayland_protocol("viewporter.xml")
-    generate_wayland_protocol("xdg-shell.xml")
-    generate_wayland_protocol("idle-inhibit-unstable-v1.xml")
-    generate_wayland_protocol("pointer-constraints-unstable-v1.xml")
-    generate_wayland_protocol("relative-pointer-unstable-v1.xml")
-    generate_wayland_protocol("xdg-decoration-unstable-v1.xml")
 endif()
 
 if (WIN32 AND GLFW_BUILD_SHARED_LIBRARY)
