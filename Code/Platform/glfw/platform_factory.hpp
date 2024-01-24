@@ -8,6 +8,7 @@ namespace glfw
     {
     public:
         [[nodiscard]] std::unique_ptr<base::Platform> create_platform() const final;
+        [[nodiscard]] std::unique_ptr<base::Context>  create_context()  const final;
         [[nodiscard]] std::unique_ptr<base::Window>   create_window()   const final;
     };
 }

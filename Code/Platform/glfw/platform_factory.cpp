@@ -1,5 +1,6 @@
 #include "platform_factory.hpp"
 #include "platform.hpp"
+#include "context.hpp"
 #include "window.hpp"
 
 namespace glfw
@@ -7,6 +8,11 @@ namespace glfw
     std::unique_ptr<base::Platform> PlatformFactory::create_platform() const
     {
         return std::make_unique<Platform>();
+    }
+
+    std::unique_ptr<base::Context> PlatformFactory::create_context() const
+    {
+        return std::make_unique<Context>();
     }
 
     std::unique_ptr<base::Window> PlatformFactory::create_window() const

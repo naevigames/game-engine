@@ -7,7 +7,8 @@ WindowManager::WindowManager()
 
 void WindowManager::init(const base::PlatformFactory* factory, const base::window_config& config)
 {
-    _window = factory->create_window();
+    _context = factory->create_context();
+    _window  = factory->create_window();
 
     _window->hint({ GLFW_RESIZABLE, GLFW_FALSE });
 
@@ -18,6 +19,8 @@ void WindowManager::init(const base::PlatformFactory* factory, const base::windo
     _window->register_close_callback();
 
     _window->activate();
+
+    _context->load();
 }
 
 void WindowManager::release()

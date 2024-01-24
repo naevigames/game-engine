@@ -18,7 +18,8 @@ public:
 private:
     WindowManager();
 
-    std::unique_ptr<base::Window> _window;
+    std::unique_ptr<base::Context> _context;
+    std::unique_ptr<base::Window>  _window;
 
     bool _active;
 };
