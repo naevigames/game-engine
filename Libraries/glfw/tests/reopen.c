@@ -68,11 +68,6 @@ static const vec2 vertices[4] =
     { -0.5f,  0.5f }
 };
 
-static void error_callback(int error, const char* description)
-{
-    fprintf(stderr, "Error: %s\n", description);
-}
-
 static void window_close_callback(GLFWwindow* window)
 {
     printf("Close callback triggered\n");
@@ -107,13 +102,8 @@ int main(int argc, char** argv)
 
     srand((unsigned int) time(NULL));
 
-    glfwSetErrorCallback(error_callback);
-
     if (!glfwInit())
         exit(EXIT_FAILURE);
-
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 
     for (;;)
     {

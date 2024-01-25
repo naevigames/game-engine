@@ -217,8 +217,6 @@ int main(int argc, char** argv)
         mat4x4 m, p, mvp;
         float position = cosf((float) glfwGetTime() * 4.f) * 0.75f;
 
-        glfwGetFramebufferSize(window, &width, &height);
-
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT);
 
