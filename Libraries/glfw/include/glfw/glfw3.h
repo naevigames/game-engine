@@ -4063,10 +4063,6 @@ GLFWAPI GLFWwindowcontentscalefun glfwSetWindowContentScaleCallback(GLFWwindow* 
  *
  *  @thread_safety This function must only be called from the main thread.
  *
- *  @sa @ref events
- *  @sa @ref glfwWaitEvents
- *  @sa @ref glfwWaitEventsTimeout
- *
  *  @since Added in version 1.0.
  *
  *  @ingroup window
