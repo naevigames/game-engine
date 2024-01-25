@@ -159,8 +159,6 @@ void _glfwInputWindowCloseRequest(_GLFWwindow* window)
 {
     assert(window != NULL);
 
-    window->shouldClose = GLFW_TRUE;
-
     if (window->callbacks.close)
         window->callbacks.close((GLFWwindow*) window);
 }
@@ -487,24 +485,6 @@ GLFWAPI void glfwDestroyWindow(GLFWwindow* handle)
     }
 
     _glfw_free(window);
-}
-
-GLFWAPI int glfwWindowShouldClose(GLFWwindow* handle)
-{
-    _GLFWwindow* window = (_GLFWwindow*) handle;
-    assert(window != NULL);
-
-    _GLFW_REQUIRE_INIT_OR_RETURN(0);
-    return window->shouldClose;
-}
-
-GLFWAPI void glfwSetWindowShouldClose(GLFWwindow* handle, int value)
-{
-    _GLFWwindow* window = (_GLFWwindow*) handle;
-    assert(window != NULL);
-
-    _GLFW_REQUIRE_INIT();
-    window->shouldClose = value;
 }
 
 GLFWAPI void glfwSetWindowTitle(GLFWwindow* handle, const char* title)
@@ -1112,32 +1092,3 @@ GLFWAPI void glfwPollEvents(void)
     _GLFW_REQUIRE_INIT();
     _glfw.platform.pollEvents();
 }
-
-GLFWAPI void glfwWaitEvents(void)
-{
-    _GLFW_REQUIRE_INIT();
-    _glfw.platform.waitEvents();
-}
-
-GLFWAPI void glfwWaitEventsTimeout(double timeout)
-{
-    _GLFW_REQUIRE_INIT();
-    assert(timeout == timeout);
-    assert(timeout >= 0.0);
-    assert(timeout <= DBL_MAX);
-
-    if (timeout != timeout || timeout < 0.0 || timeout > DBL_MAX)
-    {
-        _glfwInputError(GLFW_INVALID_VALUE, "Invalid time %f", timeout);
-        return;
-    }
-
-    _glfw.platform.waitEventsTimeout(timeout);
-}
-
-GLFWAPI void glfwPostEmptyEvent(void)
-{
-    _GLFW_REQUIRE_INIT();
-    _glfw.platform.postEmptyEvent();
-}
-
