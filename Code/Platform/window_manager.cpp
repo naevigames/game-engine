@@ -1,10 +1,5 @@
 #include "window_manager.hpp"
 
-WindowManager::WindowManager()
-    : _active { }
-{
-}
-
 void WindowManager::init(const base::PlatformFactory* factory, const base::window_config& config)
 {
     _context = factory->create_context();
@@ -47,4 +42,12 @@ WindowManager& WindowManager::instance()
 bool WindowManager::is_active() const
 {
     return _active;
+}
+
+std::any WindowManager::handle() const
+{
+    #ifdef GLFW_PLATFORM
+    auto   handle = std::any_cast<GLFWwindow*>(_window->handle());
+    return glfwGetWin32Window(handle);
+    #endif
 }

@@ -3,11 +3,6 @@
 
 namespace glfw
 {
-    Window::Window()
-        : _handle { }
-    {
-    }
-
     bool Window::create(const base::window_config& config)
     {
                _handle = glfwCreateWindow(config.size.width, config.size.height, config.title.c_str(), nullptr, nullptr);
@@ -47,5 +42,10 @@ namespace glfw
     void Window::hint(const base::window_hint& hint)
     {
         glfwWindowHint(hint.first, hint.second);
+    }
+
+    std::any Window::handle() const
+    {
+        return _handle;
     }
 }

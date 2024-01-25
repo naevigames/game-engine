@@ -7,8 +7,6 @@ namespace glfw
     class Window final : public base::Window
     {
     public:
-        Window();
-
         bool create(const base::window_config& config) final;
         void destroy()                                 final;
         void activate()                                final;
@@ -19,9 +17,10 @@ namespace glfw
         void register_size_callback()  final;
         void register_close_callback() final;
 
-        void hint(const base::window_hint& hint) final;
+        void     hint(const base::window_hint& hint) final;
+        std::any handle() const final;
 
     private:
-        GLFWwindow* _handle;
+        GLFWwindow* _handle { };
     };
 }

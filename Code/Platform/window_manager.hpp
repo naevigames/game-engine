@@ -11,15 +11,14 @@ public:
 
     void shutdown();
 
-    [[nodiscard]] bool is_active() const;
+    [[nodiscard]] std::any handle() const;
+    [[nodiscard]] bool  is_active() const;
 
     static WindowManager& instance();
 
 private:
-    WindowManager();
-
     std::unique_ptr<base::Context> _context;
     std::unique_ptr<base::Window>  _window;
 
-    bool _active;
+    bool _active { };
 };

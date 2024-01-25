@@ -26,9 +26,10 @@ namespace base
         {
         }
 
-        virtual void hint(const window_hint& hint)
+        virtual void     hint(const window_hint& hint)
         {
-        }
+        } // TODO move this to platform
+        virtual std::any handle() const = 0;
 
         virtual ~Window() = default;
     };
