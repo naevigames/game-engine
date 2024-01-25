@@ -724,10 +724,6 @@ extern "C" {
  *  a terminal that does not have the necessary environment variables.  Fall back to
  *  a different platform if possible or notify the user that no usable platform was
  *  detected.
- *
- *  Failure to detect a specific platform may have the same cause as above or be because
- *  support for that platform was not compiled in.  Call @ref glfwPlatformSupported to
- *  check whether a specific platform is supported by a library binary.
  */
 #define GLFW_PLATFORM_UNAVAILABLE   0x0001000E
 /*! @} */
@@ -1117,9 +1113,6 @@ extern "C" {
  */
 #define GLFW_ANY_PLATFORM           0x00060000
 #define GLFW_PLATFORM_WIN32         0x00060001
-#define GLFW_PLATFORM_COCOA         0x00060002
-#define GLFW_PLATFORM_WAYLAND       0x00060003
-#define GLFW_PLATFORM_X11           0x00060004
 /*! @} */
 
 #define GLFW_DONT_CARE              -1
@@ -1852,23 +1845,6 @@ typedef struct GLFWallocator
  *  @errors Possible errors include @ref GLFW_PLATFORM_UNAVAILABLE and @ref
  *  GLFW_PLATFORM_ERROR.
  *
- *  @remark @macos This function will change the current directory of the
- *  application to the `Contents/Resources` subdirectory of the application's
- *  bundle, if present.  This can be disabled with the @ref
- *  GLFW_COCOA_CHDIR_RESOURCES init hint.
- *
- *  @remark @macos This function will create the main menu and dock icon for the
- *  application.  If GLFW finds a `MainMenu.nib` it is loaded and assumed to
- *  contain a menu bar.  Otherwise a minimal menu bar is created manually with
- *  common commands like Hide, Quit and About.  The About entry opens a minimal
- *  about dialog with information from the application's bundle.  The menu bar
- *  and dock icon can be disabled entirely with the @ref GLFW_COCOA_MENUBAR init
- *  hint.
- *
- *  @remark @x11 This function will set the `LC_CTYPE` category of the
- *  application locale according to the current environment if that category is
- *  still "C".  This is because the "C" locale breaks Unicode text input.
- *
  *  @thread_safety This function must only be called from the main thread.
  *
  *  @sa @ref intro_init
@@ -1974,51 +1950,6 @@ GLFWAPI void glfwInitHint(int hint, int value);
  *  @ingroup init
  */
 GLFWAPI void glfwInitAllocator(const GLFWallocator* allocator);
-
-/*! @brief Returns the currently selected platform.
- *
- *  This function returns the platform that was selected during initialization.  The
- *  returned value will be one of `GLFW_PLATFORM_WIN32`, `GLFW_PLATFORM_COCOA`,
- *  `GLFW_PLATFORM_WAYLAND`, `GLFW_PLATFORM_X11` or `GLFW_PLATFORM_NULL`.
- *
- *  @return The currently selected platform, or zero if an error occurred.
- *
- *  @errors Possible errors include @ref GLFW_NOT_INITIALIZED.
- *
- *  @thread_safety This function may be called from any thread.
- *
- *  @sa @ref platform
- *  @sa @ref glfwPlatformSupported
- *
- *  @since Added in version 3.4.
- *
- *  @ingroup init
- */
-GLFWAPI int glfwGetPlatform(void);
-
-/*! @brief Returns whether the library includes support for the specified platform.
- *
- *  This function returns whether the library was compiled with support for the specified
- *  platform.  The platform must be one of `GLFW_PLATFORM_WIN32`, `GLFW_PLATFORM_COCOA`,
- *  `GLFW_PLATFORM_WAYLAND`, `GLFW_PLATFORM_X11` or `GLFW_PLATFORM_NULL`.
- *
- *  @param[in] platform The platform to query.
- *  @return `GLFW_TRUE` if the platform is supported, or `GLFW_FALSE` otherwise.
- *
- *  @errors Possible errors include @ref GLFW_INVALID_ENUM.
- *
- *  @remark This function may be called before @ref glfwInit.
- *
- *  @thread_safety This function may be called from any thread.
- *
- *  @sa @ref platform
- *  @sa @ref glfwGetPlatform
- *
- *  @since Added in version 3.4.
- *
- *  @ingroup init
- */
-GLFWAPI int glfwPlatformSupported(int platform);
 
 /*! @brief Returns the currently connected monitors.
  *
@@ -2599,50 +2530,6 @@ GLFWAPI void glfwWindowHint(int hint, int value);
  *  For more information on bundles, see the
  *  [Bundle Programming Guide](https://developer.apple.com/library/mac/documentation/CoreFoundation/Conceptual/CFBundles/)
  *  in the Mac Developer Library.
- *
- *  @remark @macos On OS X 10.10 and later the window frame will not be rendered
- *  at full resolution on Retina displays unless the
- *  [GLFW_COCOA_RETINA_FRAMEBUFFER](@ref GLFW_COCOA_RETINA_FRAMEBUFFER_hint)
- *  hint is `GLFW_TRUE` and the `NSHighResolutionCapable` key is enabled in the
- *  application bundle's `Info.plist`.  For more information, see
- *  [High Resolution Guidelines for OS X](https://developer.apple.com/library/mac/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Explained/Explained.html)
- *  in the Mac Developer Library.  The GLFW test and example programs use
- *  a custom `Info.plist` template for this, which can be found as
- *  `CMake/Info.plist.in` in the source tree.
- *
- *  @remark @macos When activating frame autosaving with
- *  [GLFW_COCOA_FRAME_NAME](@ref GLFW_COCOA_FRAME_NAME_hint), the specified
- *  window size and position may be overridden by previously saved values.
- *
- *  @remark @x11 Some window managers will not respect the placement of
- *  initially hidden windows.
- *
- *  @remark @x11 Due to the asynchronous nature of X11, it may take a moment for
- *  a window to reach its requested state.  This means you may not be able to
- *  query the final size, position or other attributes directly after window
- *  creation.
- *
- *  @remark @x11 The class part of the `WM_CLASS` window property will by
- *  default be set to the window title passed to this function.  The instance
- *  part will use the contents of the `RESOURCE_NAME` environment variable, if
- *  present and not empty, or fall back to the window title.  Set the
- *  [GLFW_X11_CLASS_NAME](@ref GLFW_X11_CLASS_NAME_hint) and
- *  [GLFW_X11_INSTANCE_NAME](@ref GLFW_X11_INSTANCE_NAME_hint) window hints to
- *  override this.
- *
- *  @remark @wayland Compositors should implement the xdg-decoration protocol
- *  for GLFW to decorate the window properly.  If this protocol isn't
- *  supported, or if the compositor prefers client-side decorations, a very
- *  simple fallback frame will be drawn using the wp_viewporter protocol.  A
- *  compositor can still emit close, maximize or fullscreen events, using for
- *  instance a keybind mechanism.  If neither of these protocols is supported,
- *  the window won't be decorated.
- *
- *  @remark @wayland A full screen window will not attempt to change the mode,
- *  no matter what the requested size or refresh rate.
- *
- *  @remark @wayland Screensaver inhibition requires the idle-inhibit protocol
- *  to be implemented in the user's compositor.
  *
  *  @thread_safety This function must only be called from the main thread.
  *

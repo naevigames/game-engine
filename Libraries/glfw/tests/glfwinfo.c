@@ -66,10 +66,6 @@
 
 #define PLATFORM_NAME_ANY   "any"
 #define PLATFORM_NAME_WIN32 "win32"
-#define PLATFORM_NAME_COCOA "cooca"
-#define PLATFORM_NAME_WL    "wayland"
-#define PLATFORM_NAME_X11   "x11"
-#define PLATFORM_NAME_NULL  "null"
 
 static void usage(void)
 {
@@ -274,48 +270,6 @@ static void list_vulkan_instance_layers(void)
     }
 
     free(lp);
-}
-
-static void list_vulkan_device_layers(VkInstance instance, VkPhysicalDevice device)
-{
-    printf("Vulkan device layers:\n");
-
-    uint32_t lp_count;
-    vkEnumerateDeviceLayerProperties(device, &lp_count, NULL);
-    VkLayerProperties* lp = calloc(lp_count, sizeof(VkLayerProperties));
-    vkEnumerateDeviceLayerProperties(device, &lp_count, lp);
-
-    for (uint32_t i = 0;  i < lp_count;  i++)
-    {
-        printf(" %s (spec version %u.%u) \"%s\"\n",
-               lp[i].layerName,
-               VK_VERSION_MAJOR(lp[i].specVersion),
-               VK_VERSION_MINOR(lp[i].specVersion),
-               lp[i].description);
-    }
-
-    free(lp);
-}
-
-static void print_platform(void)
-{
-    const int platforms[] =
-    {
-        GLFW_PLATFORM_WIN32,
-        GLFW_PLATFORM_COCOA,
-        GLFW_PLATFORM_WAYLAND,
-        GLFW_PLATFORM_X11,
-        GLFW_PLATFORM_NULL
-    };
-
-    printf("GLFW platform: %s\n", get_platform_name(glfwGetPlatform()));
-    printf("GLFW supported platforms:\n");
-
-    for (size_t i = 0;  i < sizeof(platforms) / sizeof(platforms[0]);  i++)
-    {
-        if (glfwPlatformSupported(platforms[i]))
-            printf(" %s\n", get_platform_name(platforms[i]));
-    }
 }
 
 int main(int argc, char** argv)

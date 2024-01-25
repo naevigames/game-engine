@@ -27,10 +27,6 @@
 
 #include "internal.h"
 
-// These construct a string literal from individual numeric constants
-#define _GLFW_CONCAT_VERSION(m, n, r) #m "." #n "." #r
-#define _GLFW_MAKE_VERSION(m, n, r) _GLFW_CONCAT_VERSION(m, n, r)
-
 //////////////////////////////////////////////////////////////////////////
 //////                       GLFW internal API                      //////
 //////////////////////////////////////////////////////////////////////////
@@ -44,15 +40,6 @@ static const struct
 #if defined(_GLFW_WIN32)
     { GLFW_PLATFORM_WIN32, _glfwConnectWin32 },
 #endif
-#if defined(_GLFW_COCOA)
-    { GLFW_PLATFORM_COCOA, _glfwConnectCocoa },
-#endif
-#if defined(_GLFW_X11)
-    { GLFW_PLATFORM_X11, _glfwConnectX11 },
-#endif
-#if defined(_GLFW_WAYLAND)
-    { GLFW_PLATFORM_WAYLAND, _glfwConnectWayland },
-#endif
 };
 
 GLFWbool _glfwSelectPlatform(int desiredID, _GLFWplatform* platform)
@@ -61,10 +48,7 @@ GLFWbool _glfwSelectPlatform(int desiredID, _GLFWplatform* platform)
     size_t i;
 
     if (desiredID != GLFW_ANY_PLATFORM &&
-        desiredID != GLFW_PLATFORM_WIN32 &&
-        desiredID != GLFW_PLATFORM_COCOA &&
-        desiredID != GLFW_PLATFORM_WAYLAND &&
-        desiredID != GLFW_PLATFORM_X11)
+        desiredID != GLFW_PLATFORM_WIN32)
     {
         _glfwInputError(GLFW_INVALID_ENUM, "Invalid platform ID 0x%08X", desiredID);
         return GLFW_FALSE;
@@ -100,39 +84,6 @@ GLFWbool _glfwSelectPlatform(int desiredID, _GLFWplatform* platform)
         }
 
         _glfwInputError(GLFW_PLATFORM_UNAVAILABLE, "The requested platform is not supported");
-    }
-
-    return GLFW_FALSE;
-}
-
-//////////////////////////////////////////////////////////////////////////
-//////                        GLFW public API                       //////
-//////////////////////////////////////////////////////////////////////////
-
-GLFWAPI int glfwGetPlatform(void)
-{
-    _GLFW_REQUIRE_INIT_OR_RETURN(0);
-    return _glfw.platform.platformID;
-}
-
-GLFWAPI int glfwPlatformSupported(int platformID)
-{
-    const size_t count = sizeof(supportedPlatforms) / sizeof(supportedPlatforms[0]);
-    size_t i;
-
-    if (platformID != GLFW_PLATFORM_WIN32 &&
-        platformID != GLFW_PLATFORM_COCOA &&
-        platformID != GLFW_PLATFORM_WAYLAND &&
-        platformID != GLFW_PLATFORM_X11)
-    {
-        _glfwInputError(GLFW_INVALID_ENUM, "Invalid platform ID 0x%08X", platformID);
-        return GLFW_FALSE;
-    }
-
-    for (i = 0;  i < count;  i++)
-    {
-        if (platformID == supportedPlatforms[i].ID)
-            return GLFW_TRUE;
     }
 
     return GLFW_FALSE;
