@@ -566,12 +566,6 @@ GLFWAPI void glfwMakeContextCurrent(GLFWwindow* handle)
         window->context.makeCurrent(window);
 }
 
-GLFWAPI GLFWwindow* glfwGetCurrentContext(void)
-{
-    _GLFW_REQUIRE_INIT_OR_RETURN(NULL);
-    return _glfwPlatformGetTls(&_glfw.contextSlot);
-}
-
 GLFWAPI void glfwSwapBuffers(GLFWwindow* handle)
 {
     _GLFWwindow* window = (_GLFWwindow*) handle;
