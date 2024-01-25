@@ -660,20 +660,6 @@ GLFWAPI void glfwSetWindowAspectRatio(GLFWwindow* handle, int numer, int denom)
     _glfw.platform.setWindowAspectRatio(window, numer, denom);
 }
 
-GLFWAPI void glfwGetFramebufferSize(GLFWwindow* handle, int* width, int* height)
-{
-    _GLFWwindow* window = (_GLFWwindow*) handle;
-    assert(window != NULL);
-
-    if (width)
-        *width = 0;
-    if (height)
-        *height = 0;
-
-    _GLFW_REQUIRE_INIT();
-    _glfw.platform.getFramebufferSize(window, width, height);
-}
-
 GLFWAPI void glfwGetWindowFrameSize(GLFWwindow* handle,
                                     int* left, int* top,
                                     int* right, int* bottom)

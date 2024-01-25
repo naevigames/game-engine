@@ -484,8 +484,6 @@ GLFWbool _glfwInitWGL(void)
         extensionSupportedWGL("WGL_ARB_create_context");
     _glfw.wgl.ARB_create_context_profile =
         extensionSupportedWGL("WGL_ARB_create_context_profile");
-    _glfw.wgl.EXT_create_context_es2_profile =
-        extensionSupportedWGL("WGL_EXT_create_context_es2_profile");
     _glfw.wgl.ARB_create_context_robustness =
         extensionSupportedWGL("WGL_ARB_create_context_robustness");
     _glfw.wgl.ARB_create_context_no_error =
@@ -575,8 +573,7 @@ GLFWbool _glfwCreateContextWGL(_GLFWwindow* window,
     else
     {
         if (!_glfw.wgl.ARB_create_context ||
-            !_glfw.wgl.ARB_create_context_profile ||
-            !_glfw.wgl.EXT_create_context_es2_profile)
+            !_glfw.wgl.ARB_create_context_profile)
         {
             _glfwInputError(GLFW_API_UNAVAILABLE,
                             "WGL: OpenGL ES requested but WGL_ARB_create_context_es2_profile is unavailable");

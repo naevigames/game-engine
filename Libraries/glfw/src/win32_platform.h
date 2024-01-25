@@ -352,7 +352,6 @@ typedef struct _GLFWlibraryWGL
     GLFWbool                            ARB_pixel_format;
     GLFWbool                            ARB_create_context;
     GLFWbool                            ARB_create_context_profile;
-    GLFWbool                            EXT_create_context_es2_profile;
     GLFWbool                            ARB_create_context_robustness;
     GLFWbool                            ARB_create_context_no_error;
     GLFWbool                            ARB_context_flush_control;
@@ -487,7 +486,6 @@ void _glfwGetWindowSizeWin32(_GLFWwindow* window, int* width, int* height);
 void _glfwSetWindowSizeWin32(_GLFWwindow* window, int width, int height);
 void _glfwSetWindowSizeLimitsWin32(_GLFWwindow* window, int minwidth, int minheight, int maxwidth, int maxheight);
 void _glfwSetWindowAspectRatioWin32(_GLFWwindow* window, int numer, int denom);
-void _glfwGetFramebufferSizeWin32(_GLFWwindow* window, int* width, int* height);
 void _glfwGetWindowFrameSizeWin32(_GLFWwindow* window, int* left, int* top, int* right, int* bottom);
 void _glfwGetWindowContentScaleWin32(_GLFWwindow* window, float* xscale, float* yscale);
 void _glfwIconifyWindowWin32(_GLFWwindow* window);
