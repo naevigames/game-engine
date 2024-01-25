@@ -520,7 +520,6 @@ struct _GLFWwindow
     GLFWbool            floating;
     GLFWbool            focusOnShow;
     GLFWbool            mousePassthrough;
-    GLFWbool            shouldClose;
     void*               userPointer;
     GLFWbool            doublebuffer;
     GLFWvidmode         videoMode;
@@ -682,13 +681,6 @@ struct _GLFWplatform
     void (*setWindowOpacity)(_GLFWwindow*,float);
     void (*setWindowMousePassthrough)(_GLFWwindow*,GLFWbool);
     void (*pollEvents)(void);
-    void (*waitEvents)(void);
-    void (*waitEventsTimeout)(double);
-    void (*postEmptyEvent)(void);
-    // vulkan
-    void (*getRequiredInstanceExtensions)(char**);
-    GLFWbool (*getPhysicalDevicePresentationSupport)(VkInstance,VkPhysicalDevice,uint32_t);
-    VkResult (*createWindowSurface)(VkInstance,_GLFWwindow*,const VkAllocationCallbacks*,VkSurfaceKHR*);
 };
 
 // Library global data
