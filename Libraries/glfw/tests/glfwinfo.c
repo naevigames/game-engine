@@ -297,36 +297,6 @@ static void list_vulkan_device_layers(VkInstance instance, VkPhysicalDevice devi
     free(lp);
 }
 
-static bool valid_version(void)
-{
-    int major, minor, revision;
-    glfwGetVersion(&major, &minor, &revision);
-
-    if (major != GLFW_VERSION_MAJOR)
-    {
-        printf("*** ERROR: GLFW major version mismatch! ***\n");
-        return false;
-    }
-
-    if (minor != GLFW_VERSION_MINOR || revision != GLFW_VERSION_REVISION)
-        printf("*** WARNING: GLFW version mismatch! ***\n");
-
-    return true;
-}
-
-static void print_version(void)
-{
-    int major, minor, revision;
-    glfwGetVersion(&major, &minor, &revision);
-
-    printf("GLFW header version: %u.%u.%u\n",
-           GLFW_VERSION_MAJOR,
-           GLFW_VERSION_MINOR,
-           GLFW_VERSION_REVISION);
-    printf("GLFW library version: %u.%u.%u\n", major, minor, revision);
-    printf("GLFW library version string: \"%s\"\n", glfwGetVersionString());
-}
-
 static void print_platform(void)
 {
     const int platforms[] =

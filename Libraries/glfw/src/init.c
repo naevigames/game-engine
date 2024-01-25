@@ -487,16 +487,6 @@ GLFWAPI void glfwInitVulkanLoader(PFN_vkGetInstanceProcAddr loader)
     _glfwInitHints.vulkanLoader = loader;
 }
 
-GLFWAPI void glfwGetVersion(int* major, int* minor, int* rev)
-{
-    if (major != NULL)
-        *major = GLFW_VERSION_MAJOR;
-    if (minor != NULL)
-        *minor = GLFW_VERSION_MINOR;
-    if (rev != NULL)
-        *rev = GLFW_VERSION_REVISION;
-}
-
 GLFWAPI int glfwGetError(const char** description)
 {
     _GLFWerror* error;
