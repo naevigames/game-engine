@@ -1,6 +1,7 @@
 #pragma once
 
 #include "surface.hpp"
+#include "queue_indices.hpp"
 
 namespace vk
 {
@@ -10,7 +11,6 @@ namespace vk
         void find_device(const Instance& instance);
         void find_queue(const  Surface&  surface);
 
-        uint32_t graphics_queue_index = -1;
-        uint32_t present_queue_index  = -1;
+        QueueIndices queue_indices;
     };
 }

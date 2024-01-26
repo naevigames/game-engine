@@ -11,13 +11,9 @@ namespace vk
             VK_KHR_SWAPCHAIN_EXTENSION_NAME
         };
 
-        std::set<uint32_t> unique_queue_families =
-        {
-            physical_device.graphics_queue_index,
-            physical_device.present_queue_index
-        };
-
         std::vector<VkDeviceQueueCreateInfo> queue_create_info_list;
+
+        auto unique_queue_families = physical_device.queue_indices.set();
 
         for (uint32_t queue_family : unique_queue_families)
         {

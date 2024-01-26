@@ -23,20 +23,20 @@ namespace vk
 
         for (int32_t i = 0; i < queue_family_count; i++)
         {
-            if (queue_families[i].queueFlags & VK_QUEUE_GRAPHICS_BIT)
-            {
-                graphics_queue_index = i;
-            }
-
             VkBool32 present_available;
             vkGetPhysicalDeviceSurfaceSupportKHR(_handle, i, surface._handle, &present_available);
 
             if (present_available)
             {
-                present_queue_index = i;
+                queue_indices._present = i;
             }
 
-            if (graphics_queue_index != -1 && present_queue_index != -1)
+            if (queue_families[i].queueFlags & VK_QUEUE_GRAPHICS_BIT)
+            {
+                queue_indices._graphics = i;
+            }
+
+            if (queue_indices._graphics != -1 && queue_indices._present != -1)
             {
                 break;
             }
