@@ -6,6 +6,6 @@ namespace vk
     {
     public:
         VkSurfaceCapabilitiesKHR capabilities;
-        VkSurfaceFormatKHR       format;
+        VkSurfaceFormatKHR       current_format;
     };
 }

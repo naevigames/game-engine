@@ -1,4 +1,5 @@
 #include "instance.hpp"
+#include "physical_device.hpp"
 
 namespace vk
 {
@@ -33,5 +34,19 @@ namespace vk
     void Instance::destroy()
     {
         vkDestroyInstance(_handle, nullptr);
+    }
+
+    PhysicalDevice Instance::find_device() const
+    {
+        uint32_t physical_device_count;
+        vkEnumeratePhysicalDevices(_handle, &physical_device_count, nullptr);
+
+        std::vector<VkPhysicalDevice> physical_devices(physical_device_count);
+        vkEnumeratePhysicalDevices(_handle, &physical_device_count, physical_devices.data());
+
+        PhysicalDevice   physical_device;
+        physical_device._handle = physical_devices[0];
+
+        return physical_device;
     }
 }

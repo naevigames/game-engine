@@ -2,7 +2,7 @@
 
 namespace vk
 {
-    void ImageView::create(const Device& device, VkImage const& image, const VkFormat& format)
+    void ImageView::create(const Device& device, const VkImage& image, const VkFormat& format)
     {
         VkImageViewCreateInfo image_view_create_info
         {

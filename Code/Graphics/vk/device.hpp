@@ -11,6 +11,6 @@ namespace vk
         void  create(const PhysicalDevice& physical_device);
         void  destroy();
 
-        Queue find_queue(uint32_t family_index) const;
+        [[nodiscard]] Queue get_queue(uint32_t family_index) const;
     };
 }

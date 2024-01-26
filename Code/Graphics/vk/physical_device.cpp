@@ -2,18 +2,7 @@
 
 namespace vk
 {
-    void PhysicalDevice::find_device(const Instance& instance)
-    {
-        uint32_t physical_device_count;
-        vkEnumeratePhysicalDevices(instance._handle, &physical_device_count, nullptr);
-
-        std::vector<VkPhysicalDevice> physical_devices(physical_device_count);
-        vkEnumeratePhysicalDevices(instance._handle, &physical_device_count, physical_devices.data());
-
-        _handle = physical_devices[0];
-    }
-
-    void PhysicalDevice::find_queue(const Surface& surface)
+    void PhysicalDevice::get_queue_indices(const Surface& surface)
     {
         uint32_t queue_family_count;
         vkGetPhysicalDeviceQueueFamilyProperties(_handle, &queue_family_count, nullptr);
@@ -41,5 +30,18 @@ namespace vk
                 break;
             }
         }
+    }
+
+    void PhysicalDevice::get_surface_details(const Surface& surface)
+    {
+        vkGetPhysicalDeviceSurfaceCapabilitiesKHR(_handle, surface._handle, &surface_details.capabilities);
+
+        uint32_t vk_surface_format_count;
+        vkGetPhysicalDeviceSurfaceFormatsKHR(_handle, surface._handle, &vk_surface_format_count, nullptr);
+
+        std::vector<VkSurfaceFormatKHR> vk_surface_formats(vk_surface_format_count);
+        vkGetPhysicalDeviceSurfaceFormatsKHR(_handle, surface._handle, &vk_surface_format_count, vk_surface_formats.data());
+
+        surface_details.current_format = vk_surface_formats[0];
     }
 }
