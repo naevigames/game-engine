@@ -8,5 +8,7 @@ namespace base
     {
         std::string title;
         window_size size;
+
+        bool vulkan_api;
     };
 }

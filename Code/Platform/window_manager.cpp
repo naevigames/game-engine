@@ -5,6 +5,11 @@ void WindowManager::init(const base::PlatformFactory* factory, const base::windo
     _context = factory->create_context();
     _window  = factory->create_window();
 
+    if (config.vulkan_api)
+    {
+        _window->hint({ GLFW_CLIENT_API, GLFW_NO_API });
+    }
+
     _window->hint({ GLFW_RESIZABLE, GLFW_FALSE });
 
     _active = _window->create(config);
