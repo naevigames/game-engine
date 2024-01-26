@@ -2,11 +2,6 @@
 
 namespace vk
 {
-    void Queue::find_queue(const Device& device, uint32_t family_index)
-    {
-        vkGetDeviceQueue(device._handle, family_index, 0, &_handle);
-    }
-
     void Queue::submit(const VkCommandBuffer& command_buffer)
     {
         VkSubmitInfo submit_info

@@ -1,4 +1,5 @@
 #include "device.hpp"
+#include "queue.hpp"
 
 namespace vk
 {
@@ -45,5 +46,13 @@ namespace vk
     void Device::destroy()
     {
         vkDestroyDevice(_handle, nullptr);
+    }
+
+    Queue Device::find_queue(uint32_t family_index) const
+    {
+        Queue queue;
+        vkGetDeviceQueue(_handle, family_index, 0, &queue._handle);
+
+        return queue;
     }
 }
